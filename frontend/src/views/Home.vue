@@ -81,6 +81,7 @@ export default {
    mounted: function () {
       if (this.$store.state.user.id != -1) {
            this.$router.push('/api/users/myprofile');
+           this.$router.push('/api/posts/');
            return;
        }
    },

@@ -163,15 +163,6 @@ const store = createStore({
       //     });
       //   })
       // }, 
-
-      // updatePost: ({commit}, usersInfos) => {
-      //   instancePost.get('/getPosts', usersInfos)
-      //   .then(function (response) {
-      //     commit('usersPost', 'logUser', response.data);
-      //   })
-      //   .catch(function () {
-      //   });
-      // }
     },
     
     modules: {

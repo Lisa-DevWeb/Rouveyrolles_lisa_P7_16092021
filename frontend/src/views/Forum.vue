@@ -33,8 +33,8 @@
 
     <button v-on:click="updatePost()">Mettre à jour</button>
 
-    <div v-for="post in posts" v-bind:key="post.id" class="card">
-        {{ post }}
+    <div v-for="post in allPosts" v-bind:key="post.id" class="card">
+        <!-- {{ post }} -->
 
         <div class="col vert">
             <div class="container">
@@ -85,7 +85,8 @@ import addPost from '../components/Postcreate.vue'
 
 import { mapState } from 'vuex'
 import axios from 'axios'
-import setAuthHeader from '../utils/setAuthHeader'
+// import axiosInstance from '../utils/requiredtoken'
+// import setAuthHeader from '../utils/setAuthHeader'
 
 export default ({
     name: 'Forum',
@@ -94,37 +95,91 @@ export default ({
     },
     data: function () {
         return {
-        posts: ["", "", "", ""]
+        post: {
+            id: "",
+            title: "",
+            content: "",
+            attachment: "",
+        },
+
+        posts: []
         }
+
     },
     methods: {
         updatePost() {
-            
 
-            // this.$store.dispatch('login', {
-            // email: this.email,
-            // password: this.password})
+            // let token = this.$store.state.user.token
+           
+            // axios.get('http://localhost:3000/api/posts/getPosts', {
+            //     headers: {
+            //         'Authorization': 'Bearer '+ token
+            //     },      
+            //     })      
+            //     .then((response) => {
+            //         console.log(response.data)
+            //          this.allPosts = response.data;
+            //     })
+            //     .catch((error) => {
+            //         alert('error', error.response)
+            //     })
 
-            axios.get('http://localhost:3000/api/posts/getPosts')
-            .then((response) => {
-                localStorage.setItem('token', response.data.token),
-                setAuthHeader(response.data.token)
-                this.$store.dispatch('getUserInfos');
-                this.$store.commit('logUser');
-            })
-            .catch((err) => console.log(err.response))
+                //  this.$store.dispatch('modeleUser');
+
+            // const axiosInstance = axios.create({
+            // baseURL: 'http://localhost:3000/api/posts/getPosts',
+            // headers: { Authorization: `Bearer ${token}` },
+            // });
+
+            // // this.$store.dispatch('login', {
+            // // email: this.email,
+            // // password: this.password})
+
+            // axiosInstance(method, data, header)
+            // .then((response) => {
+            //     localStorage.setItem('token', response.data.token),
+            //     setAuthHeader(response.data.token)
+            //     this.$store.dispatch('getUserInfos');
+            //     this.$store.commit('logUser');
+            // })
+            // .catch((err) => console.log(err.response))
+
         },            
    },
     mounted: function () {
-        console.log(this.$store.state.user);
-        // this.$store.dispatch('getPost');
-        //  this.$store.commit('getPost')
-        this.$store.dispatch('getUserInfos');
+    // let token = this.$store.state.user.token
+    //     if (token) {
+    //         axios.defaults.headers.common['Authorization'] = token;
+    //     } else {
+    //         axios.defaults.headers.common['Authorization'] = null;
+    //     }
+
+    // const axiosInstance = axios.create({
+    // baseURL: 'http://localhost:3000/api/posts/',
+    // headers: { Authorization: "Bearer " + localStorage.getItem("token")}});
+
+    //   let AUTH_TOKEN = localStorage.getItem("token")
+    // axiosInstance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+
+
+    //  axiosInstance
+    //   .get('http://localhost:3000/api/posts/getPosts')
+    //   .then(response => (this.info = response))
+
+    //  console.log(this.$store.state.user);
+      
+    //   if (this.$store.state.user.id == -1) {
+    //        this.$router.push('/api/users/login');
+    //        return;
+    //    }
+    //     this.$store.dispatch('getUserInfos');
+    //     this.$store.dispatch('login')
     },
 
     computed: {
        ...mapState({
-           user: 'usersInfos'
+           user: 'usersInfos',
+           userlog: 'logUser'
        })
    },
 
