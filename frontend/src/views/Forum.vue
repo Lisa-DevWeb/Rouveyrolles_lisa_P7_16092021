@@ -3,7 +3,7 @@
 
      <!-- Navbar -->
    <nav class="navbar navbar-expand-lg navbar-light rose">
-        <a class="navbar-brand" href="#"><img src="../assets/icon-left-font-monochrome-black.svg" alt="logo" class="big"></a>
+  
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,21 +31,19 @@
         <h3 class="d-flex justify-content-center p-3">Dernières participations</h3>
     </div>
 
-    <button v-on:click="updatePost()">Mettre à jour</button>
+    <button v-on:click="updatePost()" class="publi">Voir les publications</button>
 
-    <div v-for="post in allPosts" v-bind:key="post.id" class="card">
-        {{ post }}
+    <div v-for="post in posts" v-bind:key="post.id" class="card m-3 p-2 bleu">
 
-        <div class="col vert">
+        <div class="col photo">
             <div class="container">
                 <div class="row">
-                  <div class="col-sm-2 d-flex justify-content-center">
+                  <div class="col-sm-2 d-flex justify-content-start">
                     <img src="../assets/icon.svg" alt="logo" class="rounded rounded-circle ">
-                  </div>
 
-                  <div class="col-sm-5 d-flex justify-content-center align-items-start flex-column">
-                    <div>Nom Prenom</div>
-                    <div>Date</div>
+                     <div class="col-sm-5 d-flex justify-content- align-items-start flex-column name">
+                    <div>{{ post.User.username }}</div>
+                  </div>
                   </div>
 
                 </div>
@@ -53,18 +51,19 @@
         </div>
 
         <div class="col all">
-            <p class="d-flex justify-content-center">Titre</p>
-            <div class="card">
-                <div class="col commentaire">Commentaire ou gif</div>
-                <div class="col barre">
+            <div class="card d-flex justify-content-center flex-wrap">
+                 <p class="d-flex justify-content-center m-3">{{ post.title }}</p>
+                <div class="col commentaire m-2">{{ post.content }}</div>
+                <div class="col img"><img src="" alt="">{{ post.attachment }}</div>
+            </div>
+
+             <div class="col barre">
                     <div class="d-flex flex-row justify-content-center">
-                        <div class="p-2">Comments</div>
-                        <div class="p-2">Coeur</div>
-                        <div class="p-2">LIKE</div>
+                        <div class="col p-3 icone"><fa icon="thumbs-up"/></div>
+                        <div class="col p-3 icone"><fa icon="comment-dots"/></div>
+                        <div class="col p-3 icone"><fa icon="heart"/></div>
                     </div>
                 </div>
-                
-            </div>
         </div>
     </div>
 
@@ -84,15 +83,7 @@
 import addPost from '../components/Postcreate.vue'
 
 import { mapState } from 'vuex'
-// import axios from 'axios'
-// import axiosInstance from '../utils/requiredtoken'
-// import setAuthHeader from '../utils/setAuthHeader'
 import authHeader from '../main'
-
-//  const axiosInstance = axios.create({
-//     baseURL: 'http://localhost:3000/api/',
-//     headers: { Authorization: authHeader() },
-//     });
 
 export default ({
     name: 'Forum',
@@ -101,14 +92,7 @@ export default ({
     },
     data: function () {
         return {
-            post: {
-                id: "",
-                title: "",
-                content: "",
-                attachment: "",
-            },
-
-            posts: []
+            posts: [],
         }
 
     },
@@ -128,42 +112,14 @@ export default ({
             console.log(requestOptions)
 
             fetch("http://localhost:3000/api/posts/getPosts", requestOptions)
-                .then(response => response.text())
-                .then(result => {
-                console.log(result);
-                })
+                .then(response => response.json())
+                .then(data => this.posts = data)
                 .catch(error => console.log('error', error));
             
         }
     },
     mounted: function () {
-    // let token = this.$store.state.user.token
-    //     if (token) {
-    //         axios.defaults.headers.common['Authorization'] = token;
-    //     } else {
-    //         axios.defaults.headers.common['Authorization'] = null;
-    //     }
-
-    // const axiosInstance = axios.create({
-    // baseURL: 'http://localhost:3000/api/posts/',
-    // headers: { Authorization: "Bearer " + localStorage.getItem("token")}});
-
-    //   let AUTH_TOKEN = localStorage.getItem("token")
-    // axiosInstance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-
-
-    //  axiosInstance
-    //   .get('http://localhost:3000/api/posts/getPosts')
-    //   .then(response => (this.info = response))
-
-    //  console.log(this.$store.state.user);
-      
-    //   if (this.$store.state.user.id == -1) {
-    //        this.$router.push('/api/users/login');
-    //        return;
-    //    }
-    //     this.$store.dispatch('getUserInfos');
-    //     this.$store.dispatch('login')
+    
     },
 
     computed: {
@@ -183,5 +139,50 @@ export default ({
     text-decoration: none;
     display: flex;
     justify-content: space-around;
+}
+
+.name {
+    color: white;
+    padding-left: 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.publi {
+    background-color: rgb(18, 36, 65);
+    color: white;
+    border-radius: 15px;
+    padding: 13px;
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.publi:hover {
+    -webkit-transform: scale(1.3);
+	transform: scale(1.1);
+}
+
+.photo {
+    padding-bottom: 10px;
+}
+
+.barre, .bleu {
+    background-color: rgb(18, 36, 65) !important;
+}
+
+.icone {
+    color: white;
+    font-size: 1.3em;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.rouded, .rounded-circle {
+    height: 80px;
 }
 </style>

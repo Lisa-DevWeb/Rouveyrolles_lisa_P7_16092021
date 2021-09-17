@@ -6,10 +6,6 @@ const axios = require('axios');
 const instance = axios.create({
     baseURL: 'http://localhost:3000/api/users/'
   });
-
-// const instancePost = axios.create({
-//   racineURL: 'http://localhost:3000/api/posts/'
-// });
  
 let user = localStorage.getItem('user');
 if (!user) {
@@ -55,6 +51,23 @@ const store = createStore({
         latent: '',
         token: '',
       },
+      // thePost: {},
+      // postList: [{
+      //   id: '',
+      //   userId: '',
+      //   title: '',
+      //   content: '',
+      //   attachment: '',
+      //   isModerate: '',
+      // }],
+      // getters: {
+      //   getPost(state) {
+      //     return state.postList;
+      //   },
+      //   getthePost(state) {
+      //     return state.thePost;
+      //   }
+      // }
       
     },
     mutations: {
@@ -76,16 +89,10 @@ const store = createStore({
         }
         localStorage.removeItem('user');
       },
-      // infosUser: function (state, user, [id, email, username, role, isAdmin, latent]) {
-      //   instancePost.defaults.headers.common['Authorization'] = user.token;
-      //   state.user.id = id,  
-      //   state.user.email = email,
-      //   state.user.username = username,
-      //   state.user.role = role,
-      //   state.user.isAdmin = isAdmin,
-      //   state.user.latent = latent,
-      //   state.user.token = localStorage.getItem('token')
-      // },
+      // setThepost (state, post) {
+      //   let postFound = {};
+      //   state.postList.forEach((post) => {}) 
+      // }
 
     },
     actions: {
@@ -132,48 +139,6 @@ const store = createStore({
           });
       },
 
-      // updatePost: ({commit}, usersInfos) => {
-      //   const axiosInstance = axios.create({
-      //       baseURL: 'http://localhost:3000/api/posts',
-      //       headers: { Authorization: `Bearer ${token}` },
-      //       });
-
-      //       axiosInstance.get('/getPosts')
-
-      //   commit('logUser', response.data);
-      // }
-
-      // getpost: ({commit}, infosUser) => {
-      //   instancePost.get('http://localhost:3000/api/posts/getPosts', {
-      //     headers: {
-      //       Authorization: "Bearer" + localStorage.getItem("token")
-      //     }
-      //   })
-      //   .then(function (response) {
-      //     commit('infosUSer', response.data.user);
-      //   })
-      //   .catch(function () {
-      //   });
-      // },
-
-      // getPost: ({commit}, infosUser) => {
-      //   return new Promise((resolve, reject) => {
-      //     console.log(infosUser);
-      //     instancePost.get('http://localhost:3000/api/posts/getPosts', {
-      //     headers: {
-      //       Authorization: "Bearer" + localStorage.getItem("token")
-      //     }
-      //   })
-      //     .then(function (response) {
-      //       commit('infosUser', response.data);
-      //       commit('logUser', response.data);
-      //       resolve(response);
-      //     })
-      //     .catch(function (error) {
-      //       reject(error);
-      //     });
-      //   })
-      // }, 
     },
     
     modules: {
