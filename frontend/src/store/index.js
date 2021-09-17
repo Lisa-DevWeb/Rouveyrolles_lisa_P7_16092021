@@ -132,6 +132,17 @@ const store = createStore({
           });
       },
 
+      // updatePost: ({commit}, usersInfos) => {
+      //   const axiosInstance = axios.create({
+      //       baseURL: 'http://localhost:3000/api/posts',
+      //       headers: { Authorization: `Bearer ${token}` },
+      //       });
+
+      //       axiosInstance.get('/getPosts')
+
+      //   commit('logUser', response.data);
+      // }
+
       // getpost: ({commit}, infosUser) => {
       //   instancePost.get('http://localhost:3000/api/posts/getPosts', {
       //     headers: {

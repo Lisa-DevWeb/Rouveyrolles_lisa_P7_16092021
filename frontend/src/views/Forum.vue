@@ -34,7 +34,7 @@
     <button v-on:click="updatePost()">Mettre à jour</button>
 
     <div v-for="post in allPosts" v-bind:key="post.id" class="card">
-        <!-- {{ post }} -->
+        {{ post }}
 
         <div class="col vert">
             <div class="container">
@@ -84,9 +84,15 @@
 import addPost from '../components/Postcreate.vue'
 
 import { mapState } from 'vuex'
-import axios from 'axios'
+// import axios from 'axios'
 // import axiosInstance from '../utils/requiredtoken'
 // import setAuthHeader from '../utils/setAuthHeader'
+import authHeader from '../main'
+
+//  const axiosInstance = axios.create({
+//     baseURL: 'http://localhost:3000/api/',
+//     headers: { Authorization: authHeader() },
+//     });
 
 export default ({
     name: 'Forum',
@@ -95,57 +101,41 @@ export default ({
     },
     data: function () {
         return {
-        post: {
-            id: "",
-            title: "",
-            content: "",
-            attachment: "",
-        },
+            post: {
+                id: "",
+                title: "",
+                content: "",
+                attachment: "",
+            },
 
-        posts: []
+            posts: []
         }
 
     },
     methods: {
         updatePost() {
+            console.log(authHeader());
 
-            // let token = this.$store.state.user.token
-           
-            // axios.get('http://localhost:3000/api/posts/getPosts', {
-            //     headers: {
-            //         'Authorization': 'Bearer '+ token
-            //     },      
-            //     })      
-            //     .then((response) => {
-            //         console.log(response.data)
-            //          this.allPosts = response.data;
-            //     })
-            //     .catch((error) => {
-            //         alert('error', error.response)
-            //     })
+            const myHeaders = new Headers({'Authorization': authHeader()});
 
-                //  this.$store.dispatch('modeleUser');
+            var requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow',
+                credentials: 'same-origin'
+            };
 
-            // const axiosInstance = axios.create({
-            // baseURL: 'http://localhost:3000/api/posts/getPosts',
-            // headers: { Authorization: `Bearer ${token}` },
-            // });
+            console.log(requestOptions)
 
-            // // this.$store.dispatch('login', {
-            // // email: this.email,
-            // // password: this.password})
-
-            // axiosInstance(method, data, header)
-            // .then((response) => {
-            //     localStorage.setItem('token', response.data.token),
-            //     setAuthHeader(response.data.token)
-            //     this.$store.dispatch('getUserInfos');
-            //     this.$store.commit('logUser');
-            // })
-            // .catch((err) => console.log(err.response))
-
-        },            
-   },
+            fetch("http://localhost:3000/api/posts/getPosts", requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                console.log(result);
+                })
+                .catch(error => console.log('error', error));
+            
+        }
+    },
     mounted: function () {
     // let token = this.$store.state.user.token
     //     if (token) {
