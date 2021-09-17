@@ -5,10 +5,10 @@ import router from './router'
 import store from './store'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faThumbsUp, faHeart, faCommentDots} from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp, faHeart, faCommentDots, faHome, faUser} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faThumbsUp, faHeart, faCommentDots)
+library.add(faThumbsUp, faHeart, faCommentDots, faHome, faUser)
 
 export default function authHeader() {
     let user = JSON.parse(localStorage.getItem('user'));

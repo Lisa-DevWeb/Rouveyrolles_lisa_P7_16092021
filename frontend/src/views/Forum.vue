@@ -1,6 +1,8 @@
 <template>
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
+ <div id="page_bloc">  
+
      <!-- Navbar -->
    <nav class="navbar navbar-expand-lg navbar-light rose">
   
@@ -10,13 +12,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <router-link :to="{name: 'Forum', path: '/api/posts/'}" class="link">Forum</router-link>
+                        <router-link :to="{name: 'Forum', path: '/api/posts/'}" class="link fofo"><fa icon="home"/></router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link :to="{name: 'Profile', path: '/api/users/myprofile'}" class="link">Mon compte</router-link>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Notification</a>
+                        <router-link :to="{name: 'Profile', path: '/api/users/myprofile'}" class="link useer"><fa icon="user"/></router-link>
                     </li>
                 </ul>
             </div>
@@ -41,7 +40,7 @@
                   <div class="col-sm-2 d-flex justify-content-start">
                     <img src="../assets/icon.svg" alt="logo" class="rounded rounded-circle ">
 
-                     <div class="col-sm-5 d-flex justify-content- align-items-start flex-column name">
+                     <div class="col-sm-5 d-flex justify-content-center align-items-start flex-column name">
                     <div>{{ post.User.username }}</div>
                   </div>
                   </div>
@@ -69,6 +68,7 @@
 
 </div>
 
+ </div>
 <footer>
     <!-- Copyright -->
 <div class="text-center p-4 text-black" style="background-color: rgb(255, 215, 215);">
@@ -127,9 +127,7 @@ export default ({
            user: 'usersInfos',
            userlog: 'logUser'
        })
-   },
-
-
+    },
     
 })
 </script>
@@ -141,6 +139,24 @@ export default ({
     justify-content: space-around;
 }
 
+.fofo, .useer {
+    color: rgb(209, 81, 90);
+    margin-left: 40px;
+    padding-top: 10px;
+} 
+
+.link {
+    font-size: 1.7em;
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+}
+
+#page_bloc {
+    width: 80%;
+    margin: auto;
+}
+
 .name {
     color: white;
     padding-left: 10px;
@@ -150,9 +166,10 @@ export default ({
 }
 
 .publi {
-    background-color: rgb(18, 36, 65);
+    background-color: rgb(209, 81, 90);
     color: white;
     border-radius: 15px;
+    border-style : none; 
     padding: 13px;
     -webkit-transform: scale(1);
 	transform: scale(1);
