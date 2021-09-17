@@ -30,7 +30,7 @@
         <h3 class="d-flex justify-content-center p-3">Dernières participations</h3>
     </div>
 
-    <button v-on:click="updatePost()" class="publi">Voir les publications</button>
+    <button v-on:click="updatePost()" class="publi m-2">Voir les publications</button>
 
     <div v-for="post in posts" v-bind:key="post.id" class="card m-3 p-2 bleu">
 

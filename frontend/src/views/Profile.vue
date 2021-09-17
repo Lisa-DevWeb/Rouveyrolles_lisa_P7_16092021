@@ -1,23 +1,21 @@
 <template>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-      <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-light rose">
+<div id="page_bloc">
+
+       <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-light">
+  
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <router-link :to="{name: 'Forum', path: '/api/posts/'}">Forum</router-link>
-                    <!-- <a class="nav-link" href="./forum.html">Publication</a> -->
+                        <router-link :to="{name: 'Forum', path: '/api/posts/'}" class="link fofo"><fa icon="home"/></router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link :to="{name: 'Profile', path: '/api/users/myprofile'}">Mon compte</router-link>
-                    <!-- <a class="nav-link" href="./compte.html">Mon compte</a> -->
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Notification</a>
+                        <router-link :to="{name: 'Profile', path: '/api/users/myprofile'}" class="link useer"><fa icon="user"/></router-link>
                     </li>
                 </ul>
             </div>
@@ -29,37 +27,27 @@
     <div class="card p-3 m-2">
 
 <div class="w-75">
-            <div>
-                <button @click="logout()" class="btn deco">Déconnexion</button>
-            </div>
-
-        <div class="card-body rounded-circle m-3 red"><img src="../assets/icon.svg" alt="photo de profil"></div>
-
-        <div>
-            <p>{{user.email}} {{user.username}} {{user.role}}</p>
+        <div class="deco">
+            <button @click="logout()" class="btn">Déconnexion</button>
         </div>
 
-        <!-- <div>
-          <p>{{ user.email }} {{ user.username }} {{ user.role }} </p>
-        </div> -->
+<div class="card m-2">
+        <h1>Vos coordonées</h1>
 
-        <div class="col row cote">
-            <p>Nom:</p>
-            <form action="">
-                    <div class="col">
-                      <input type="text" class="form-control" id="nom">
-                    </div>
-            </form>
-
-            <p>Prenom</p>
-            <form action="">
-                <div class="col">
-                    <input type="text" class="form-control" id="prenom">
-                </div>
-            </form>
+        <div class="d-flex justify-content-center align-items-center content">
+            <div class="rounded-circle profil">
+                <img src="../assets/icon.svg" alt="photo de profil">
+            </div>
         </div>
         
         <div class="col row cote">
+             <div class="col row cote">
+                    <div>
+                        <p>{{user.username}} </p> 
+                        <p>{{user.email}}</p>
+                    </div>
+                </div>
+
             <p>Poste:</p>
             <form action="">
                 <div class="col">
@@ -68,18 +56,19 @@
             </form>
 
 
-            <p>Service:</p>
+            <p class="p-2">Service:</p>
             <form action="">
                 <div class="col">
                     <input type="text" class="form-control" id="service">
                 </div>
             </form>
         </div>
+</div>
 
         <div class="all">
             <form class="m-4">
                 <div class="form-group">
-                  <label for="ajoutImg">Ajouter une image de profil</label>
+                  <label for="ajoutImg" class="p-2">Ajouter une image de profil</label>
                   <input type="file" class="form-control-file" id="addpicture">
                 </div>
             </form>
@@ -103,6 +92,7 @@
  </div>
  <!-- Copyright -->
    </footer>
+</div>
 
 <router-view />
 </template>
@@ -135,6 +125,23 @@ export default ({
 </script>
 
 <style scoped>
+#page_bloc {
+    width: 80%;
+    margin: auto;
+}
+
+.fofo, .useer {
+    color: rgb(209, 81, 90);
+    margin-left: 40px;
+    padding-top: 10px;
+} 
+
+.link {
+    font-size: 1.7em;
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+}
 
 .deco {
     display: flex;
@@ -147,7 +154,6 @@ export default ({
 }
 
 .color {
-    background-color: orange;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -184,40 +190,5 @@ export default ({
 .rouge {
     background-color: rgb(253, 45, 1) !important;
 }
-
-
-.post {
-    background-color: lightblue;
-}
-
-.vert {
-    background-color: bisque;
-    width: 100%;
-}
-
-.rounded {
-    background-color: rgb(30, 183, 210);
-}
-
-.petit {
-    height: 180%;
-}
-
-.contenu {
-    background-color: chocolate;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-}
-
-.all {
-    width: 100%;
-    background-color: pink;
-}
-
-.red {
-    background-color: plum;
-}
-
 
 </style>
