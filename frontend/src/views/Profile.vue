@@ -75,10 +75,10 @@
         </div>
 </div>
 
-        <button type="button" class="btn fs-5">Editer</button>
+        <button type="button" class="btn fs-5 disabled">Editer</button>
 
         <div class="delete m-2 d-flex justify-content-center">
-            <button type="button" class="btn rouge text-white">Supprimer mon compte</button>
+            <button @click="deleteUser" type="button" class="btn rouge text-white">Supprimer mon compte</button>
         </div>
       </div>
       
@@ -87,9 +87,9 @@
     <!-- Footer -->
     <footer>
         <!-- Copyright -->
- <div class="text-center p-4 text-black" style="background-color: rgb(255, 215, 215);">
+    <div class="text-center p-4 text-black" style="background-color: rgb(255, 215, 215);">
    © 2021 Copyright – Groupomania
- </div>
+   </div>
  <!-- Copyright -->
    </footer>
 </div>
@@ -99,9 +99,25 @@
 
 <script>
 import { mapState } from 'vuex'
+import axios from 'axios'
+import authHeader from '../main'
 
 export default ({
    name: 'Profile',
+    data: function() {
+        return {
+            user: {
+                id: '',
+                email: '',
+                username: '',
+                password: '',
+                role: '',
+                isAdmin: '',
+                latent: '',
+                token: '',
+            }
+        }
+    },
    mounted: function () {
        console.log(this.$store.state.user);
        if (this.$store.state.user.id == -1) {
@@ -119,7 +135,14 @@ export default ({
        logout: function () {
            this.$store.commit('logout');
            this.$router.push('/api/users/login');
-       }
+       },
+       deleteUser() {
+           let userId = localStorage.getItem('user');
+
+            axios.delete("http://localhost:3000/api/users/delete", { headers: {Authorization: authHeader()} })
+            .then(localStorage.removeItem('user'))
+            .then(location.href = "/")
+       },
    }
 })
 </script>

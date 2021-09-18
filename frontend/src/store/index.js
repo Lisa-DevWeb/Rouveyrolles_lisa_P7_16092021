@@ -51,23 +51,6 @@ const store = createStore({
         latent: '',
         token: '',
       },
-      // thePost: {},
-      // postList: [{
-      //   id: '',
-      //   userId: '',
-      //   title: '',
-      //   content: '',
-      //   attachment: '',
-      //   isModerate: '',
-      // }],
-      // getters: {
-      //   getPost(state) {
-      //     return state.postList;
-      //   },
-      //   getthePost(state) {
-      //     return state.thePost;
-      //   }
-      // }
       
     },
     mutations: {
@@ -89,11 +72,7 @@ const store = createStore({
         }
         localStorage.removeItem('user');
       },
-      // setThepost (state, post) {
-      //   let postFound = {};
-      //   state.postList.forEach((post) => {}) 
-      // }
-
+      
     },
     actions: {
       login: ({commit}, usersInfos) => {

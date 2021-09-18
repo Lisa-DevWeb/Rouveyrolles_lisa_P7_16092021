@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory} from 'vue-router';
 
-// import NotFound from '@/views/NotFound.vue';
 import Forum from '@/views/Forum.vue';
 import Profile from '@/views/Profile.vue';
 
@@ -16,7 +15,6 @@ const routes = [
     {
         name: 'Home',
         path: '/api/users/login',
-        // component: Home,
         component: () => import('../views/Home.vue'),
         meta: {
             title: 'Connexion',
@@ -46,14 +44,7 @@ const routes = [
             title: 'Profile'
         }
     },
-    // {
-    //     name: 'NotFound',
-    //     path: '/:pathMatch(.*)',
-    //     component: NotFound,
-    //     meta: {
-    //         title: '400 Not found',
-    //     }
-    // },
+
 ];
 
 const router = createRouter({

@@ -62,13 +62,10 @@ export default ({
     },
     methods: {
         onfileSelected() {
-            // console.log(event);
-            // this.attachment = event.target.files[0]
             this.attachment = this.$refs.file.files[0];
         },
         postData(e) {
             console.log(this.newPost);
-            // console.log(authHeader());
             e.preventDefault()
 
              const fd = new FormData();
@@ -78,38 +75,11 @@ export default ({
              console.log("test recup", fd.get("title"));
              console.log("Test recup", fd.get("content"));
 
-            //  const myHeaders = new Headers({Authorization: authHeader()});
-
-                // var requestOptions = {
-                //     Authorization: authHeader(),
-                //     redirect: 'follow',
-                //     credentials: 'same-origin'
-                // };
-
-                // console.log(myHeaders);
-
             axios.post("http://localhost:3000/api/posts/new", fd, { headers: {Authorization: authHeader()} })
             .then(data => this.newPost = data)
             .catch(error => console.log('error', error));
 
-            console.log(new Headers);
-
-            //  const myHeaders = new Headers({'Authorization': authHeader()});
-
-            // var requestOptions = {
-            //     method: 'POST',
-            //     headers: myHeaders,
-            //     redirect: 'follow',
-            //     credentials: 'same-origin'
-            // };
-
-            // console.log(requestOptions)
-
-            // fetch("http://localhost:3000/api/posts/new", requestOptions)
-            //     .then(response => response.json())
-            //     .then(data => this.newPost = data)
-            //     .catch(error => console.log('error', error));
-           
+            console.log(new Headers);           
         }
 
     },
@@ -144,5 +114,14 @@ export default ({
     display: flex;
     align-content: center;
     justify-content: center;
+}
+
+form input {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    overflow: hidden;
 }
 </style>

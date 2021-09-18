@@ -30,7 +30,7 @@
                 <h3 class="d-flex justify-content-center p-3">Dernières participations</h3>
             </div>
 
-            <button v-on:click="updatePost()" class="publi m-2">Voir les publications</button>
+            <button v-on:click="getPost()" class="publi m-2">Voir les publications</button>
 
             <div v-for="post in posts" v-bind:key="post.id" class="card m-3 p-1 bleu">
 
@@ -98,39 +98,33 @@ export default ({
         }
     },
     methods: {
-        updatePost() {
+        getPost() {
             console.log(authHeader());
 
-            const myHeaders = new Headers({'Authorization': authHeader()});
-
-            var requestOptions = {
-                method: 'GET',
-                headers: myHeaders,
-                redirect: 'follow',
-                credentials: 'same-origin'
-            };
-
-            fetch("http://localhost:3000/api/posts/getPosts", requestOptions)
+            fetch("http://localhost:3000/api/posts/getPosts", { headers: {Authorization: authHeader()} })
                 .then(response => response.json())
                 .then(data => this.posts = data)
                 .catch(error => console.log('error', error));
             
         },
-        deletePost() {
-            const myHeaders = new Headers({'Authorization': authHeader()});
+        // deletePost(id) {
+        //     this.posts.id = id;
+        //     console.log(id);
 
-            var requestOptions = {
-                method: 'DELETE',
-                headers: myHeaders,
-                redirect: 'follow',
-                credentials: 'same-origin'
-            };
+        //     const myHeaders = new Headers({'Authorization': authHeader()});
 
-            fetch("http://localhost:3000/api/posts/:id", requestOptions)
-                .then(response => response.json())
-                .then(data => this.posts = data)
-                .catch(error => console.log('error', error));
-        }
+        //     var requestOptions = {
+        //         method: 'DELETE',
+        //         headers: myHeaders,
+        //         redirect: 'follow',
+        //         credentials: 'same-origin'
+        //     };
+
+        //     fetch("http://localhost:3000/api/posts/:id", requestOptions)
+        //         .then(response => response.json())
+        //         .then(data => this.posts = data)
+        //         .catch(error => console.log('error', error));
+        // }
     },
     mounted: function () {
     
@@ -178,7 +172,6 @@ export default ({
 }
 
 .milieu {
-    background-color: yellow;
     width: 70%;
 }
 

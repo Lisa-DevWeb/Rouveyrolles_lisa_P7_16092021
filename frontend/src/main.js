@@ -4,7 +4,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// import * as Vue from 'vue' // in Vue 3
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
@@ -18,7 +17,6 @@ export default function authHeader() {
     let user = JSON.parse(localStorage.getItem('user'));
     console.log(user);
     if (user && user.token) {
-        // return { Authorization: user.token };
         return user.token;
     } else {
         return {};
