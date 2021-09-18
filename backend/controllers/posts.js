@@ -160,7 +160,6 @@ exports.deletePost = async (req, res) => {
 	}
 };
 
-
 // Futur projet 
 exports.modifPost = async (req, res) => {
 	try {

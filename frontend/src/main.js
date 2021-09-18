@@ -4,11 +4,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// import * as Vue from 'vue' // in Vue 3
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faThumbsUp, faHeart, faCommentDots, faHome, faUser, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp, faHeart, faCommentDots, faHome, faUser, faPaperPlane, faTrash} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faThumbsUp, faHeart, faCommentDots, faHome, faUser, faPaperPlane)
+library.add(faThumbsUp, faHeart, faCommentDots, faHome, faUser, faPaperPlane, faTrash)
 
 export default function authHeader() {
     let user = JSON.parse(localStorage.getItem('user'));
@@ -25,4 +29,5 @@ createApp(App)
 .component('fa', FontAwesomeIcon)
 .use(router)
 .use(store)
+.use(VueAxios, axios)
 .mount('#app')

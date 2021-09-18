@@ -16,12 +16,12 @@
 
                     <div class="form-outline">
                         <label class="form-label" for="">Nom</label>
-                        <input v-model="username" type="password" id="lastName" class="form-control form-control-lg" />
+                        <input v-model="username" type="text" id="lastName" class="form-control form-control-lg" />
                     </div>
 
                     <div class="form-outline">
                         <label class="form-label" for="">Prénom</label>
-                        <input type="password" id="firstName" class="form-control form-control-lg" />
+                        <input type="text" id="firstName" class="form-control form-control-lg" />
                     </div>
 
                       <div class="form-outline">
@@ -40,7 +40,7 @@
 
                     <div class="form-outline">
                         <label class="form-label" for="">Poste occupé</label>
-                        <input type="password" id="travail" class="form-control form-control-lg" />
+                        <input type="text" id="travail" class="form-control form-control-lg" />
                     </div>
     
                       <div class="form-outline mb-4">
