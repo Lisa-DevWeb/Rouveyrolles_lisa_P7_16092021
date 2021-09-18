@@ -94,7 +94,6 @@ export default ({
         return {
             posts: [],
         }
-
     },
     methods: {
         updatePost() {
