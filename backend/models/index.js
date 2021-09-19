@@ -17,21 +17,21 @@ const configs = {
 	development: {
 		username: process.env.DB_USERNAME,
 		password: process.env.DB_PASS,
-		database: "groupomania_development",
+		database: process.env.DB_NAMEDATA,
 		host: process.env.DB_HOST,
 		dialect: "mysql"
 	},
 	development: {
 		username: process.env.DB_USERNAME,
 		password: process.env.DB_PASS,
-		database: "groupomania_development",
+		database: process.env.DB_NAMEDATA,
 		host: process.env.DB_HOST,
 		dialect: "mysql"
 	},
 	development: {
 		username: process.env.DB_USERNAME,
 		password: process.env.DB_PASS,
-		database: "groupomania_development",
+		database: process.env.DB_NAMEDATA,
 		host: process.env.DB_HOST,
 		dialect: "mysql"
 	}
