@@ -88,26 +88,6 @@ export default {
    computed: {
      ...mapState(['status'])
    },
-    // computed: {
-    //   validatedFields: function() {
-    //     if (this.mode == 'login') {
-    //         if (this.email != "" && this.mdp != "") { //Si les champs ne sont pas vides
-    //           return true;
-    //         } else {
-    //           return false;
-    //         }
-    //       }
-    //       else {
-    //       if (this.mode == 'create') {
-    //           if (this.nom != "" && this.prenom != "" && this.elements != "" && this.poste != "" && this.email_ins != "" && this.password != "") { //Si les champs ne sont pas vides
-    //           return true;
-    //         } else {
-    //           return false;
-    //         }
-    //       }
-    //     }
-    //   }
-    // },
    methods: {
      switchToCreateAccount: function() {
        this.mode = 'create';

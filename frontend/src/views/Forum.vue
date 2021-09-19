@@ -36,7 +36,7 @@
 
                 <div class="col photo">
                     <div class="cross">
-                        <button v-on:click="deletePost()" class="delete"><fa icon="trash"/></button>
+                        <button class="delete"><fa icon="trash"/></button>
                     </div>
 
                     <div class="d-flex flex-direction-row flex-wrap head">

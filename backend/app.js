@@ -1,5 +1,5 @@
-const express = require('express');
-const helmet = require('helmet');
+const express = require('express'); //Express est un framework reposant sur Node, qui facilite la création et la gestion des serveurs Node,
+const helmet = require('helmet'); //Helmet est une collection de plusieurs middleware qui définissent des en-têtes HTTP liés à la sécurité
 const bodyParser = require('body-parser'); //Gérer la demande POST provenant de l'application front-end, permet l'extraction de l'objet JSON de la demande(rendre le corps de la reqûete exploitable)
 const app = express(); //Création d'une application express
 

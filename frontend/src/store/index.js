@@ -1,8 +1,10 @@
+//Vuex est un gestionnaire d'état (« state management pattern ») et une bibliothèque pour des applications Vue.js. IL sert de zone de stockage de données centralisée pour tous les composants. 
 import { createStore } from 'vuex'
 
+//Axios permet d'effectuer des requêtes (POST, GET, PUT, DELETE)
 const axios = require('axios');
 
-// Set config defaults when creating the instance
+//Création de la route racine
 const instance = axios.create({
     baseURL: 'http://localhost:3000/api/users/'
   });
@@ -53,6 +55,7 @@ const store = createStore({
       },
       
     },
+    //Pour modifier l'état, il faut acter une mutation. 
     mutations: {
       setStatus: function (state, status) {
         state.status = status;
@@ -74,8 +77,9 @@ const store = createStore({
       },
       
     },
+    //Les actions actent les mutations
     actions: {
-      login: ({commit}, usersInfos) => {
+      login: ({commit}, usersInfos) => { //Récupération du commit pour exécuter la mutation lors de la création du compte
         commit('setStatus', 'loading');
         return new Promise((resolve, reject) => {
           console.log(usersInfos);
