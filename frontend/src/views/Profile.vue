@@ -104,20 +104,6 @@ import authHeader from '../main'
 
 export default ({
    name: 'Profile',
-    data: function() {
-        return {
-            user: {
-                id: '',
-                email: '',
-                username: '',
-                password: '',
-                role: '',
-                isAdmin: '',
-                latent: '',
-                token: '',
-            }
-        }
-    },
    mounted: function () {
        console.log(this.$store.state.user);
        if (this.$store.state.user.id == -1) {
@@ -138,6 +124,7 @@ export default ({
        },
        deleteUser() {
            let userId = localStorage.getItem('user');
+           console.log(userId);
 
             axios.delete("http://localhost:3000/api/users/delete", { headers: {Authorization: authHeader()} })
             .then(localStorage.removeItem('user'))

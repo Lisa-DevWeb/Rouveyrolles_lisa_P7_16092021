@@ -59,10 +59,16 @@
                     </div>
 
                     
-                    <div class="d-flex flex-row justify-content-center container-fluid">
-                        <div class="col p-3 icone"><fa icon="thumbs-up"/></div>
-                        <div class="col p-3 icone"><fa icon="comment-dots"/></div>
-                        <div class="col p-3 icone"><fa icon="heart"/></div>
+                    <div class=" d-flex flex-column container-fluid">
+                        <div class="row">
+                            <div class="col p-3 icone"><fa icon="thumbs-up"/></div>
+                            <div class="col p-3 icone"><fa icon="comment-dots"/></div>
+                            <div class="col p-3 icone"><fa icon="heart"/></div>
+                        </div>
+                        
+                        <div>
+                                <commentaire/>
+                        </div>
                     </div>
 
                 </div>
@@ -83,6 +89,7 @@
 
 <script>
 import addPost from '../components/Postcreate.vue'
+import commentaire from '../components/Comment.vue';
 
 import { mapState } from 'vuex'
 import authHeader from '../main'
@@ -90,7 +97,8 @@ import authHeader from '../main'
 export default ({
     name: 'Forum',
     components: {
-        addPost
+        addPost, 
+        commentaire,
     },
     data: function () {
         return {
