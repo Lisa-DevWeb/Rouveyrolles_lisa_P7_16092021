@@ -77,13 +77,13 @@
 
         </section>
 
-    </div>
+        <footer>
+            <div class="text-center p-4 text-black" style="background-color: rgb(255, 215, 215);">
+            © 2021 Copyright – Groupomania
+            </div>
+        </footer>
 
-    <footer>
-        <div class="text-center p-4 text-black" style="background-color: rgb(255, 215, 215);">
-        © 2021 Copyright – Groupomania
-        </div>
-    </footer>
+    </div>
     
 </template>
 

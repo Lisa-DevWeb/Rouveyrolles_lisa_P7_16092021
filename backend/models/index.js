@@ -12,6 +12,7 @@ const dotenv = require("dotenv").config();
 
 const db = {};
 
+//Replacez les informations suivantes par les vôtres, afin de vous connecter à la Base de données et créer un modérateur
 const configs = {
 	development: {
 		username: process.env.DB_USERNAME,
@@ -48,16 +49,22 @@ if (config.use_env_variable) {
 	);
 }
 
-// Décommentez le code ci-dessous pour créer un compte modérateur
-// Remplacez les valeurs par celles souhaitées
-//_________________________________________________________________________________________//
-
+//Création d'un modérateur
 const password = pw => bcrypt.hashSync(pw, 10);
 const privilegedUser = sequelize.query(
 	`INSERT INTO Users (id,email,username,password,role,isAdmin,latent,createdAt,updatedAt)
 	VALUES (DEFAULT,"admin@gmail.com","Admin","${password( "LesCorneilles66")}","Développeur",1,1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)`
 );
 
+// Décommenter le code ci-dessous pour créer un compte modérateur.
+// Remplacer les valeurs par celles souhaitées
+//_________________________________________________________________________________________//
+
+// const password = pw => bcrypt.hashSync(pw, 10);
+// const privilegedUser = sequelize.query(
+// 	`INSERT INTO Users (id,email,username,password,role,isAdmin,latent,createdAt,updatedAt)
+// 	VALUES (DEFAULT,"admin@hotmail.fr","Admin","${password( "Exemple@123")}","Développeur",1,1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)`
+// );
 //_________________________________________________________________________________________//
 
 fs.readdirSync(__dirname)
