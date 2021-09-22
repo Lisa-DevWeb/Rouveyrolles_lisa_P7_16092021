@@ -44,7 +44,7 @@
     <!-- Editer profil -->
     <div class="color">
       <div class="card m-2">
-        <div class="w-75">
+        <div class="w-75 cache">
           <div class="deco">
             <button @click="logout()" class="btn m-2">Déconnexion</button>
           </div>
@@ -60,8 +60,8 @@
               </div>
             </div>
 
-            <div class="col row cote">
-              <div>
+            <div class="col">
+              <div class="d-flex flex-wrap justify-content-center flex-column">
                 <p>{{ user.username }}</p>
                 <p>{{ user.email }}</p>
                 <p>{{ user.role }}</p>
@@ -75,7 +75,7 @@
                 <label for="ajoutImg" class="p-2 text-white"
                   >Ajouter une image de profil</label
                 >
-                <input type="file" class="form-control-file" id="addpicture" />
+                <input type="file" class="form-control-file input" id="addpicture" />
               </div>
             </form>
           </div>
@@ -117,7 +117,6 @@ import authHeader from "../main";
 export default {
   name: "Profile",
   mounted: function () {
-    console.log(this.$store.state.user);
     if (this.$store.state.user.id == -1) {
       this.$router.push("/api/users/login");
       return;
@@ -143,7 +142,7 @@ export default {
           headers: { Authorization: authHeader() },
         })
         .then(localStorage.removeItem("user"))
-        .then((location.href = "/"));
+        .then((location.href = "/"), alert('Votre compte a été supprimé avec succès'));
     },
   },
 };
@@ -205,6 +204,10 @@ h1 {
 .rounded-circle {
   width: 100px;
   height: 100px;
+}
+
+.cache {
+   overflow: hidden; 
 }
 
 .card {

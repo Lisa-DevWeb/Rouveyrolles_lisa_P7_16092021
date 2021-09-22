@@ -1,8 +1,5 @@
 import { createRouter, createWebHistory} from 'vue-router';
 
-import Forum from '@/views/Forum.vue';
-import Profile from '@/views/Profile.vue';
-
 const routes = [
     {
         path: '/',
@@ -31,7 +28,7 @@ const routes = [
     {
         name: 'Forum',
         path: '/api/posts/',
-        component: Forum,
+        component: () => import('../views/Forum.vue'),
         meta: {
             title: 'Forum'
         }
@@ -39,7 +36,7 @@ const routes = [
     {
         name: 'Profile',
         path: '/api/users/myprofile',
-        component: Profile,
+        component: () => import('../views/Profile.vue'),
         meta: {
             title: 'Profile'
         }

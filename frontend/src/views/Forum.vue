@@ -32,11 +32,11 @@
 
             <button v-on:click="getPost()" class="publi m-2">Voir les publications</button>
 
-            <div v-for="post in posts" v-bind:key="post.id" class="card m-3 p-1 bleu">
+            <div v-for="post in posts" :key="post.id" class="card m-3 p-1 bleu">
 
                 <div class="col photo">
                     <div class="cross">
-                        <button class="delete"><fa icon="trash"/></button>
+                        <button v-on:click="deletePost(post.id)" class="delete"><fa icon="trash"/></button>
                     </div>
 
                     <div class="d-flex flex-direction-row flex-wrap head">
@@ -91,6 +91,8 @@
 import addPost from '../components/Postcreate.vue'
 import commentaire from '../components/Comment.vue';
 
+// import axios from 'axios'
+
 import { mapState } from 'vuex'
 import authHeader from '../main'
 
@@ -107,32 +109,29 @@ export default ({
     },
     methods: {
         getPost() {
-            console.log(authHeader());
 
-            fetch("http://localhost:3000/api/posts/getPosts", { headers: {Authorization: authHeader()} })
+            fetch("http://localhost:3000/api/posts/getPosts", { method:'GET', headers: {Authorization: authHeader()} })
                 .then(response => response.json())
                 .then(data => this.posts = data)
                 .catch(error => console.log('error', error));
             
         },
-        // deletePost(id) {
-        //     this.posts.id = id;
-        //     console.log(id);
-
-        //     const myHeaders = new Headers({'Authorization': authHeader()});
-
-        //     var requestOptions = {
-        //         method: 'DELETE',
-        //         headers: myHeaders,
-        //         redirect: 'follow',
-        //         credentials: 'same-origin'
-        //     };
-
-        //     fetch("http://localhost:3000/api/posts/:id", requestOptions)
-        //         .then(response => response.json())
-        //         .then(data => this.posts = data)
-        //         .catch(error => console.log('error', error));
-        // }
+        deletePost(id) {
+                    
+                fetch(`http://localhost:3000/api/posts/${id}`, {
+                    method:'DELETE',
+                    headers: { Authorization: authHeader() },
+                    })
+                    .then((result) => {
+                        alert('Votre message a bien été supprimé'),
+                        result.json().then((response) => {
+                            console.warn(response),
+                            window.location.reload();
+                        })
+                    })
+                    .catch(error => console.log(error))
+        },
+       
     },
     mounted: function () {
     

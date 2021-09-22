@@ -53,7 +53,14 @@ const store = createStore({
         latent: '',
         token: '',
       },
-      
+      postInfos: {
+        id: '',
+        userId: '',
+        title: '',
+        content: '',
+        attachment: '',
+      },
+      // posts: [],
     },
     //Pour modifier l'état, il faut acter une mutation. 
     mutations: {
@@ -68,6 +75,9 @@ const store = createStore({
       usersInfos: function (state, usersInfos) {
         state.usersInfos = usersInfos;
       },
+      postInfos: function (state, postInfos) {
+        state.postInfos = postInfos;
+      },
       logout: function (state) {
         state.user = {
           id: -1,
@@ -75,6 +85,13 @@ const store = createStore({
         }
         localStorage.removeItem('user');
       },
+      // setPost: function (state, posts) {
+      //   state.posts = posts
+      // },
+      // delete_video: function (state, postId) {
+      //   let posts = state.posts.filter(p => p.id != postId)
+      //   state.posts = posts;
+      // }
       
     },
     //Les actions actent les mutations
@@ -85,6 +102,7 @@ const store = createStore({
           console.log(usersInfos);
           instance.post('/login', usersInfos)
           .then(function (response) {
+            alert('Bienvenue !');
             commit('setStatus', '');
             commit('logUser', response.data);
             resolve(response);
@@ -103,7 +121,9 @@ const store = createStore({
           console.log(usersInfos);
           instance.post('/signup', usersInfos)
           .then(function (response) {
+            alert('Bienvenue !');
             commit('setStatus', 'created');
+            commit('logUser', response.data);
             resolve(response);
           })
           .catch(function (error) {
@@ -122,12 +142,22 @@ const store = createStore({
           });
       },
 
+      getPostInfos: ({commit}) => {
+        instance.get('/user/:id')
+        .then(function (response) {
+          commit('postInfos','logUser', response.data)
+          console.log(response.data);
+        })
+        .catch(function() {
+        })
+      },
+
+      // deletePost: ({commit}) => { 
+      //   commit('delete_video')
+      // }
+
     },
     
-    modules: {
-
-    }
-
 })
 
 export default store;

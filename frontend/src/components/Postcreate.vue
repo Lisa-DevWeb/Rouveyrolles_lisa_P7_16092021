@@ -65,6 +65,7 @@ export default ({
             this.attachment = this.$refs.file.files[0];
         },
         postData(e) {
+
             console.log(this.newPost);
             e.preventDefault()
 
@@ -76,7 +77,11 @@ export default ({
              console.log("Test recup", fd.get("content"));
 
             axios.post("http://localhost:3000/api/posts/new", fd, { headers: {Authorization: authHeader()} })
-            .then(data => this.newPost = data)
+            .then(
+                alert('Envoyé avec succès. Pour voir votre publication, cliquez sur le bouton indiqué'),
+                window.location.reload(),
+                data => this.newPost = data
+                )
             .catch(error => console.log('error', error));
 
             console.log(new Headers);           

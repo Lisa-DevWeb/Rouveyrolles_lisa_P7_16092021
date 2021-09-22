@@ -81,7 +81,6 @@ export default {
    mounted: function () {
       if (this.$store.state.user.id != -1) {
            this.$router.push('/api/users/myprofile');
-           this.$router.push('/api/posts/');
            return;
        }
    },
@@ -96,11 +95,10 @@ export default {
        this.mode = 'login';
      },
       login: function() {
-        //  console.log(this.email, this.password);
         const self = this;
         this.$store.dispatch('login', {
           email: this.email,
-          password: this.password
+          password: this.password,
         }).then(function () {
             self.$router.push('/api/users/myprofile');
         }, function(error) {
