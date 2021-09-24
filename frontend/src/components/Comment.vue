@@ -9,18 +9,50 @@
             </div>
                         
             <div>
-            <div>
+            <div class="container colour">
 
-                    <form @submit="postComment" action="">
-                        <div class="container mt-4">
-                            <div class="card">
+                <form action="">
+                    <div>
+
+                        <div class="card text-center">
+                            <div class="card-header">
+                               <form action="">
+                                   <input type="text" name="comments" class="container-fluid" placeholder="Ecrire un commentaire..">
+                                    <button type="submit" class="plane m-2"><fa icon="paper-plane"/></button>
+                               </form>
+                               
+                            </div>
+
+                            <div class="card-body" v-for="message in messages" :key="message.id">
+                                        <div class="color">
+                                            <div class="coulor container">
+                                                <div class="d-flex row">
+                                                    <div class="d-flex justify-content-center flex-wrap"><img class="rounded-circle" src="../assets/icon.svg" width="40"></div>
+                                                    <div class="">
+                                                        <p class="author"></p>
+                                                        <p class="card-text">{{ message }}</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                                <div class="reply px-4"> <small>supprimer</small> <span class="dots"></span> <small>Répondre</small> <span class="dots"></span> </div>
+                                        </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+
+                    <!-- <form @submit="postComment" action="">
+                        <div class="container colour">
+                            <div class="card orange">
                                 <div class="card-header">
                                     <div class="orange">
                                             <form @submit="postCom">
                                                 <div class="d-flex flex-row center flex-wrap">
                                                 <input type="text" 
-                                                name="comments" 
-                                                v-model="newCom.comments"
+                                                name="comments"
                                                 >
                                                 <button type="submit" class="plane m-2"><fa icon="paper-plane"/>
                                                 </button>
@@ -35,8 +67,8 @@
                                             <div class="d-flex row">
                                                 <div class="d-flex justify-content-center flex-wrap"><img class="rounded-circle" src="../assets/icon.svg" width="40"></div>
                                                 <div class="">
-                                                    <p class="author"></p>
-                                                <p class="card-text">{{ comment.comments }}</p>
+                                                    <p class="author">{{ comment.User.username }}</p>
+                                                    <p class="card-text">{{ comment.comments }}</p>
                                                 </div>
                                             </div>
 
@@ -44,10 +76,10 @@
                                             <div class="reply px-4"> <small>supprimer</small> <span class="dots"></span> <small>Répondre</small> <span class="dots"></span> </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
             </div>
             </div>
@@ -67,21 +99,42 @@ export default ({
 
    data: function () {
        return {
-           comments: [],
-           posts: [],
-           newCom: {
-               comments: '',
-               PostId: '',
-           },
+           messages: [],
        }
-   },
+    },
    methods: {
         getCom(id) {
 
-            fetch(`http://localhost:3000/api/posts/${id}/comments`, { method:'GET', headers: {Authorization: authHeader()} })
-                .then(response => response.json(), alert('Commentaire récupéré'))
-                .then(data => this.comments = data, alert('Oui bien récupéré'))
-                .catch(error => console.log('error', error));
+            // fetch(`http://localhost:3000/api/posts/${id}/comments`, { method:'GET', headers: {Authorization: authHeader()} })
+            //     // .then(response => response.json())
+            //       .then((result) => {
+            //             alert('Commentaire récupéré'),
+            //             result.json().then((response) => {
+            //                 console.log(response)
+            //                 // window.location.reload();
+            //             })
+            //         })
+            //     // .then(data => console.log(data))
+            //     .catch(error => console.log(error))
+
+                fetch(`http://localhost:3000/api/posts/${id}/comments`, { method:'GET', headers: {Authorization: authHeader()} })
+                .then(function(res) {
+                    if (res.ok) {
+                    return res.json();
+                    }
+                })
+                .then((response) => {
+                    this.messages = response;
+                    console.log(this.messages)
+
+                })
+                // .then(function(value) {
+                //     console.log(value);
+                // })
+                .catch(function(err) {
+                    // Une erreur est survenue
+                    console.log(err)
+                });
         }
     //    postCom(e) {
     //        console.log(this.comments);
@@ -116,6 +169,13 @@ export default ({
 </script>
 
 <style scoped>
+.colour {
+    background-color: yellow !important;
+}
+
+.orange {
+    background-color: thistle !important;
+}
 
 .container {
     background-color: white;
@@ -176,7 +236,7 @@ export default ({
     border-style : none; 
     font-size: 1em;
     border-radius: 15px;
-    width: 90px;
+    width: 65px;
     height: 30px;
     /* display: flex;
     justify-content: center;

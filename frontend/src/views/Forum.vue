@@ -188,10 +188,6 @@ export default ({
     padding: 5px;
 }
 
-.size {
-    height: 20vw;
-}
-
 .cross {
     display: flex;
     justify-content: flex-end;
@@ -221,7 +217,6 @@ export default ({
 }
 
 .image {
-    height: 40%;
     object-fit: cover; 
 }
 
