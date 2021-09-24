@@ -1,45 +1,63 @@
 <template>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-<form @submit="postComment" action="">
-        <div class="container mt-4">
-            <div class="card">
-                <div class="card-header">
-
-                    <div class="orange">
-                            <div>
-                                <div class="d-flex flex-row center flex-wrap">
-                                <input type="text" 
-                                v-model="newCom.comments"
-                                name="comments">
-                                <button type="submit" class="plane m-2"><fa icon="paper-plane"/>
-                                </button>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="color">
-                        <div class="coulor container">
-                            <div class="d-flex row">
-                                <div class="d-flex justify-content-center flex-wrap"><img class="rounded-circle" src="../assets/icon.svg" width="40"></div>
-                                <div class="">
-                                <p class="card-text">Eodem tempore etiam Hymetii praeclarae indolis viri negotium est actitatum, cuius hunc novimus esse textum.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                            <div class="reply px-4"> <small>supprimer</small> <span class="dots"></span> <small>Répondre</small> <span class="dots"></span> </div>
-                    </div>
-                </div>
+    <div class=" d-flex flex-column container-fluid">
+            <div class="row">
+                <div class="col p-3 icone"><fa icon="thumbs-up"/></div>
+                <button v-on:click="getCom(comment.PostId)" class="col p-3 icone"><fa icon="comment-dots"/></button>
+                <div class="col p-3 icone"><fa icon="heart"/></div>
             </div>
-        </div>
-</form>
+                        
+            <div>
+            <div v-for="comment in comments" :key="comment.id">
+
+                    <form @submit="postComment" action="">
+                        <div class="container mt-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="orange">
+                                            <form @submit="postCom">
+                                                <div class="d-flex flex-row center flex-wrap">
+                                                <input type="text" 
+                                                name="comments" 
+                                                v-model="newCom.comments"
+                                                >
+                                                <button type="submit" class="plane m-2"><fa icon="paper-plane"/>
+                                                </button>
+                                                </div>
+                                            </form>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="color">
+                                        <div class="coulor container">
+                                            <div class="d-flex row">
+                                                <div class="d-flex justify-content-center flex-wrap"><img class="rounded-circle" src="../assets/icon.svg" width="40"></div>
+                                                <div class="">
+                                                    <p class="author"></p>
+                                                <p class="card-text">{{ comment.comments }}</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                            <div class="reply px-4"> <small>supprimer</small> <span class="dots"></span> <small>Répondre</small> <span class="dots"></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+            </div>
+            </div>
+    </div>
+
 
 </template>
 
 <script>
 import authHeader from '../main'
+// import axios from 'axios'
 import { mapState } from 'vuex'
 
 export default ({
@@ -48,26 +66,45 @@ export default ({
    data: function () {
        return {
            comments: [],
+           posts: [],
            newCom: {
-               comments: null,
+               comments: '',
+               PostId: '',
            }
        }
    },
    methods: {
-    postComment() {
-            // let id = newCom.PostId;
-          const fd = new FormData();
-          fd.append("comments", this.newCom.comments);
+       getCom(id) {
 
-         fetch(`http://localhost:3000/api/posts/:id/comment`, { 
-            method:'POST', 
-            headers: {Authorization: authHeader()} })
-         .then(() => {
-             alert('Envoyé avec succès'),
-             data => this.newCom = data
-         })
-         .catch(error => console.log('error', error))
-    },
+            // const id = this.comments.PostId;
+            alert(id);
+
+            fetch(`http://localhost:3000/api/posts/${id}/comments`, { method:'GET', headers: {Authorization: authHeader()} })
+                .then(response => response.json())
+                .then(data => this.comments = data)
+                .catch(error => console.log('error', error));
+       }
+    //    postCom(e) {
+    //        console.log(this.comments);
+    //         e.preventDefault()
+            
+    //         //L'interface FormData permet de construire facilement un ensemble de paires clé/valeur représentant les champs du formulaire et leurs valeurs, qui peuvent ensuite être facilement envoyées en utilisant la méthode XMLHttpRequest.send() de l'objet XMLHttpRequest. 
+    //         const formaData = new FormData();
+    //         formaData.append('comments', this.newCom.comments);
+
+    //         console.log(this.newCom.comments);
+
+    //         axios.post("http://localhost:3000/api/posts/:id/comment", formaData,
+    //         { headers: {Authorization: authHeader()} })
+    //         .then(
+    //             alert('Envoyé avec succès'),
+    //             window.location.reload(),
+    //             data => this.newCom = data
+    //         )
+    //         .catch(error => console.log('error', error))
+
+    //    },
+    
    },
 
    computed: {

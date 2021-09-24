@@ -79,7 +79,7 @@ export default ({
             axios.post("http://localhost:3000/api/posts/new", fd, { headers: {Authorization: authHeader()} })
             .then(
                 alert('Envoyé avec succès. Pour voir votre publication, cliquez sur le bouton indiqué'),
-                window.location.reload(),
+                // window.location.reload(),
                 data => this.newPost = data
                 )
             .catch(error => console.log('error', error));

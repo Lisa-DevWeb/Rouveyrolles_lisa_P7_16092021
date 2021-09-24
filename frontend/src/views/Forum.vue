@@ -32,7 +32,7 @@
 
             <button v-on:click="getPost()" class="publi m-2">Voir les publications</button>
 
-            <div v-for="post in posts" :key="post.id" class="card m-3 p-1 bleu">
+            <div v-for="post in posts" :key="post.id" class="card m-3 p-1 bleu contain">
 
                 <div class="col photo">
                     <div class="cross">
@@ -48,27 +48,18 @@
                     </div>
                 </div>
 
-                <div class="col d-flex justify-content-center flex-wrap barre">
+                <div class="col d-flex justify-content-center flex-column flex-wrap barre">
 
                     <div class="m-2">
                         <p v-if="post.title != null" class="d-flex justify-content-center m-3 blc">{{ post.title }}</p>
                         <div v-if="post.content != null" class="col commentaire m-2 blc">{{ post.content }}</div>
                         <div v-if="post.attachment != null" class="card container-fluid">
-                            <img v-bind:src="post.attachment" alt="" class="img-fluid image">
+                            <img v-bind:src="post.attachment" alt="" class="image img-fluid">
                         </div>
                     </div>
-
                     
-                    <div class=" d-flex flex-column container-fluid">
-                        <div class="row">
-                            <div class="col p-3 icone"><fa icon="thumbs-up"/></div>
-                            <div class="col p-3 icone"><fa icon="comment-dots"/></div>
-                            <div class="col p-3 icone"><fa icon="heart"/></div>
-                        </div>
-                        
-                        <div>
-                                <commentaire/>
-                        </div>
+                    <div>
+                        <commentaire/>
                     </div>
 
                 </div>
@@ -230,6 +221,11 @@ export default ({
 
 .barre, .bleu {
     background-color: rgb(18, 36, 65) !important;
+    object-fit: contain;
+}
+
+.contain {
+    object-fit: contain;
 }
 
 .icone {

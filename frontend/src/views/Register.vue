@@ -49,11 +49,11 @@
                             </div>
                           </div>
 
-                          <!-- <div class="form-row m-2 rouge" v-if="mode == 'create' && status == 'error_create'">
+                          <div class="form-row m-2 rouge" v-if="mode == 'create' && status == 'error_create'">
                               <ul>
                                 <li v-for="error in errors" v-bind:key="error.id">{{ error }}</li>
                               </ul>
-                          </div> -->
+                          </div>
 
                           <div class="form-row m-2 rouge" v-if="mode == 'create' && status == 'error_create'">
                             <p> Mot de passe requis : 8 caractères minimun. -Inclure au moins 1 lettre minuscule - 1 lettre majuscule - 1 chiffre - 1 caractère spécial = !@#$%^&*</p>
