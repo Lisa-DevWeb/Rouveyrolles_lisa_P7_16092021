@@ -50,16 +50,16 @@
 
                 <div class="col d-flex justify-content-center flex-column flex-wrap barre">
 
-                    <div class="m-2">
-                        <p v-if="post.title != null" class="d-flex justify-content-center m-3 blc">{{ post.title }}</p>
-                        <div v-if="post.content != null" class="col commentaire m-2 blc">{{ post.content }}</div>
-                        <div v-if="post.attachment != null" class="card container-fluid">
-                            <img v-bind:src="post.attachment" alt="" class="image img-fluid">
+                    <div class="color">
+                        <p v-if="post.title != null" class="d-flex justify-content-center blc">{{ post.title }}</p>
+                        <div v-if="post.content != null" class="col commentaire blc">{{ post.content }}</div>
+                        <div v-if="post.attachment != null">
+                            <img v-bind:src="post.attachment" alt="" class="image img-fluid size">
                         </div>
                     </div>
                     
                     <div>
-                        <commentaire/>
+                        <commentaire v-bind:PostId="post.id"/>
                     </div>
 
                 </div>
@@ -184,6 +184,12 @@ export default ({
 
 .blc {
     color: white;
+    margin: 0;
+    padding: 5px;
+}
+
+.size {
+    height: 20vw;
 }
 
 .cross {

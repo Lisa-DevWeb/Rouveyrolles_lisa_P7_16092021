@@ -12,7 +12,7 @@
                       <div class="card-body">
                         <h1 class="text-center mb-3">S'inscrire</h1>
           
-                        <form method="post" @submit="checkForm">
+                        <form method="post">
 
                         <div class="form-outline">
                             <label class="form-label" for="username">Nom et prénom</label>
@@ -49,7 +49,7 @@
                             </div>
                           </div>
 
-                          <div class="form-row m-2 rouge" v-if="mode == 'create' && status == 'error_create'">
+                          <div class="form-row m-2 rouge" v-if="mode == 'create' && status == 'error_create' && email == null">
                               <ul>
                                 <li v-for="error in errors" v-bind:key="error.id">{{ error }}</li>
                               </ul>
@@ -62,7 +62,7 @@
                           <div class="d-flex justify-content-center">
                             <button @click="createAccount()" type="button" class="btn btn-block btn-lg gradient-custom-3 text-body rose button"> 
                               <span v-if="status == 'loading'">Création en cours...</span>
-                              <span type="submit" class="send-button" value="submit" v-else >S'inscrire</span>
+                              <span type="submit" class="send-button btn" value="submit" v-else>S'inscrire</span>
                               </button>
                           </div>
           
@@ -114,35 +114,49 @@ export default {
      ...mapState(['status'])
    },
    methods: {
-     checkForm: function (e) {
+    //  validatedFields: function () {
+    //   if (this.mode == 'create') {
+    //     if (this.email != "" && this.username != "" && this.password != "" && this.role != "") {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   } else {
+    //     if (this.email != "" && this.password != "") {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   }
 
-      if (this.mode == 'create' && status == 'error_create') {
+    // },
+    //  checkForm: function (e) {
+
+    //   if (this.mode == 'create' && status == 'error_create') {
          
-        if (this.email && this.username && this.password && this.role) {
-          return true;
-        }
+    //     if (this.email == "" && this.username == "" && this.password == "" && this.role == "") {
+    //       return false;
+    //     }
 
-        this.errors = [];
+    //     if (this.email == "") {
+    //       this.errors.push('Email requis')
+    //     }
 
-        if (!this.email) {
-          this.errors.push('Email requis')
-        }
+    //     if (this.username == "") {
+    //       this.errors.push('Vous devez spécifiez votre nom')
+    //     }
 
-        if (!this.username) {
-          this.errors.push('Vous devez spécifiez votre nom')
-        }
+    //     if (this.password == "") {
+    //       this.errors.push('Vous devez inscrire un mot de passe')
+    //     }
 
-        if (!this.password) {
-          this.errors.push('Vous devez inscrire un mot de passe')
-        }
+    //     if (this.role == "") {
+    //       this.errors.push('Sélectionnez un service')
+    //     }
 
-        if (!this.role) {
-          this.errors.push('Sélectionnez un service')
-        }
-
-        e.preventDefault(); 
-      }
-     }, 
+    //     e.preventDefault(); 
+    //   }
+    //  }, 
 
      switchToCreateAccount: function() {
        this.mode = 'create';

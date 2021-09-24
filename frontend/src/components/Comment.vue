@@ -4,12 +4,12 @@
     <div class=" d-flex flex-column container-fluid">
             <div class="row">
                 <div class="col p-3 icone"><fa icon="thumbs-up"/></div>
-                <button v-on:click="getCom(comment.PostId)" class="col p-3 icone"><fa icon="comment-dots"/></button>
+                <button v-on:click="getCom(PostId)" class="col p-3 icone"><fa icon="comment-dots"/></button>
                 <div class="col p-3 icone"><fa icon="heart"/></div>
             </div>
                         
             <div>
-            <div v-for="comment in comments" :key="comment.id">
+            <div>
 
                     <form @submit="postComment" action="">
                         <div class="container mt-4">
@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
 
-                                <div class="card-body">
+                                <div class="card-body" v-for="comment in comments" :key="comment.id">
                                     <div class="color">
                                         <div class="coulor container">
                                             <div class="d-flex row">
@@ -44,6 +44,7 @@
                                             <div class="reply px-4"> <small>supprimer</small> <span class="dots"></span> <small>Répondre</small> <span class="dots"></span> </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </form>
@@ -62,6 +63,7 @@ import { mapState } from 'vuex'
 
 export default ({
    name: 'commentaire',
+   props: ['PostId'] ,
 
    data: function () {
        return {
@@ -70,20 +72,17 @@ export default ({
            newCom: {
                comments: '',
                PostId: '',
-           }
+           },
        }
    },
    methods: {
-       getCom(id) {
-
-            // const id = this.comments.PostId;
-            alert(id);
+        getCom(id) {
 
             fetch(`http://localhost:3000/api/posts/${id}/comments`, { method:'GET', headers: {Authorization: authHeader()} })
-                .then(response => response.json())
-                .then(data => this.comments = data)
+                .then(response => response.json(), alert('Commentaire récupéré'))
+                .then(data => this.comments = data, alert('Oui bien récupéré'))
                 .catch(error => console.log('error', error));
-       }
+        }
     //    postCom(e) {
     //        console.log(this.comments);
     //         e.preventDefault()
@@ -123,6 +122,10 @@ export default ({
     width: 70%;
 }
 
+.icone {
+    color:  white;
+}
+
 .card {
     border: none;
     box-shadow: 5px 6px 6px 2px #e9ecef;
@@ -143,6 +146,11 @@ export default ({
     background-color: rgb(255, 215, 215);
     border-radius: 15px;
 }
+
+.orange {
+    background-color: violet !important;
+}
+
 /* .orange {
     background-color: orange !important;
     display: flex;
