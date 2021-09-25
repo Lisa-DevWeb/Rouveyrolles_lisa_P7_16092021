@@ -85,14 +85,6 @@ const store = createStore({
         }
         localStorage.removeItem('user');
       },
-      // setPost: function (state, posts) {
-      //   state.posts = posts
-      // },
-      // delete_video: function (state, postId) {
-      //   let posts = state.posts.filter(p => p.id != postId)
-      //   state.posts = posts;
-      // }
-      
     },
     //Les actions actent les mutations
     actions: {
@@ -151,10 +143,6 @@ const store = createStore({
         .catch(function() {
         })
       },
-
-      // deletePost: ({commit}) => { 
-      //   commit('delete_video')
-      // }
 
     },
     

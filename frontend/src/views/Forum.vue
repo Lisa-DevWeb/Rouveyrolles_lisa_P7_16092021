@@ -79,11 +79,10 @@
 </template>
 
 <script>
+//Importation des components qui permettent de faire une publicaition(post et comment)
 import addPost from '../components/Postcreate.vue'
 import commentaire from '../components/Comment.vue';
-
-// import axios from 'axios'
-
+//Importation de vuex et de authHeader permettant l'authorization lors des requêtes
 import { mapState } from 'vuex'
 import authHeader from '../main'
 
@@ -124,10 +123,6 @@ export default ({
         },
        
     },
-    mounted: function () {
-    
-    },
-
     computed: {
        ...mapState({
            user: 'usersInfos',
