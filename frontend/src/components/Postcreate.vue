@@ -3,7 +3,7 @@
 
  <div id="page_bloc">  
 
-    <form @submit="postData" name="fetch" class="container color d-flex justify-content-center">
+    <form @submit="postData" class="container color d-flex justify-content-center">
         <div class="card w-75 p-3 m-2">
             <h1>Ajouter une publication</h1>
         <div class="post">

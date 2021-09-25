@@ -6,6 +6,7 @@ const fs = require("fs"); //Donne accès aux fonctions permettant de modifier vo
 exports.createComment = async (req, res) => {
 	try {
 		let comments = req.body.comments;
+
 		const newCom = await models.Comment.create({
 			comments: comments,
 			UserId: req.user.id,
@@ -20,6 +21,7 @@ exports.createComment = async (req, res) => {
 	} catch (error) {
 		res.status(400).json({ error: error.message });
 	}
+
 };
 
 //Récupération des commentaires
