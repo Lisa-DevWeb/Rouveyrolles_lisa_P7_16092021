@@ -29,8 +29,8 @@
                                                 <div class="d-flex row">
                                                     <div class="d-flex justify-content-center flex-wrap"><img class="rounded-circle" src="../assets/icon.svg" width="40"></div>
                                                     <div class="">
-                                                        <p class="author"></p>
-                                                        <p class="card-text">{{ message }}</p>
+                                                        <p class="author">{{ message.User.username }}</p>
+                                                        <p class="card-text">{{ message.comments }}</p>
                                                     </div>
                                                 </div>
 
@@ -105,18 +105,6 @@ export default ({
    methods: {
         getCom(id) {
 
-            // fetch(`http://localhost:3000/api/posts/${id}/comments`, { method:'GET', headers: {Authorization: authHeader()} })
-            //     // .then(response => response.json())
-            //       .then((result) => {
-            //             alert('Commentaire récupéré'),
-            //             result.json().then((response) => {
-            //                 console.log(response)
-            //                 // window.location.reload();
-            //             })
-            //         })
-            //     // .then(data => console.log(data))
-            //     .catch(error => console.log(error))
-
                 fetch(`http://localhost:3000/api/posts/${id}/comments`, { method:'GET', headers: {Authorization: authHeader()} })
                 .then(function(res) {
                     if (res.ok) {
@@ -124,9 +112,8 @@ export default ({
                     }
                 })
                 .then((response) => {
-                    this.messages = response;
-                    console.log(this.messages)
-
+                    this.messages = response.message;
+                    console.log(response.message)
                 })
                 // .then(function(value) {
                 //     console.log(value);
