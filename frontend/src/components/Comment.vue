@@ -116,7 +116,7 @@ export default {
         .post(`http://localhost:3000/api/posts/${id}/comment`, this.newCom, {
           headers: { Authorization: authHeader() },
         })
-        .then((response) => console.log(response), alert("Message envoyé"))
+        .then((response) => window.location.reload(), alert("Message envoyé"), console.log(response))
         .catch((error) => console.log(error));
     },
   },

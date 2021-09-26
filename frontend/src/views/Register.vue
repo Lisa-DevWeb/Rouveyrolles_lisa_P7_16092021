@@ -114,50 +114,6 @@ export default {
      ...mapState(['status'])
    },
    methods: {
-    //  validatedFields: function () {
-    //   if (this.mode == 'create') {
-    //     if (this.email != "" && this.username != "" && this.password != "" && this.role != "") {
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
-    //   } else {
-    //     if (this.email != "" && this.password != "") {
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
-    //   }
-
-    // },
-    //  checkForm: function (e) {
-
-    //   if (this.mode == 'create' && status == 'error_create') {
-         
-    //     if (this.email == "" && this.username == "" && this.password == "" && this.role == "") {
-    //       return false;
-    //     }
-
-    //     if (this.email == "") {
-    //       this.errors.push('Email requis')
-    //     }
-
-    //     if (this.username == "") {
-    //       this.errors.push('Vous devez spécifiez votre nom')
-    //     }
-
-    //     if (this.password == "") {
-    //       this.errors.push('Vous devez inscrire un mot de passe')
-    //     }
-
-    //     if (this.role == "") {
-    //       this.errors.push('Sélectionnez un service')
-    //     }
-
-    //     e.preventDefault(); 
-    //   }
-    //  }, 
-
      switchToCreateAccount: function() {
        this.mode = 'create';
      },

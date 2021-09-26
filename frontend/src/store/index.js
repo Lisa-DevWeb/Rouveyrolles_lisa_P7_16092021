@@ -7,7 +7,7 @@ const axios = require('axios');
 //Création de la route racine
 const instance = axios.create({
     baseURL: 'http://localhost:3000/api/users/'
-  });
+  }); 
  
 let user = localStorage.getItem('user');
 if (!user) {
@@ -53,14 +53,6 @@ const store = createStore({
         latent: '',
         token: '',
       },
-      postInfos: {
-        id: '',
-        userId: '',
-        title: '',
-        content: '',
-        attachment: '',
-      },
-      // posts: [],
     },
     //Pour modifier l'état, il faut acter une mutation. 
     mutations: {
@@ -74,9 +66,6 @@ const store = createStore({
       },
       usersInfos: function (state, usersInfos) {
         state.usersInfos = usersInfos;
-      },
-      postInfos: function (state, postInfos) {
-        state.postInfos = postInfos;
       },
       logout: function (state) {
         state.user = {
@@ -132,16 +121,6 @@ const store = createStore({
           })
           .catch(function () {
           });
-      },
-
-      getPostInfos: ({commit}) => {
-        instance.get('/user/:id')
-        .then(function (response) {
-          commit('postInfos','logUser', response.data)
-          console.log(response.data);
-        })
-        .catch(function() {
-        })
       },
 
     },

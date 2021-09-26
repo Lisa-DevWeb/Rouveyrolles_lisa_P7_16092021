@@ -25,7 +25,7 @@
 
             <div>
                 <form class="m-4">
-                    <div class="form-group">
+                    <div class="form-group d-flex justify-content-center flex-wrap">
                       <label for="File">Ajouter un fichier</label>
                       <input @change="onfileSelected" type="file" name="attachment" ref="file" class="form-control-file" id="addPicture" accept=".jpg, .jpeg, .gif, .png">
                     </div>
@@ -79,7 +79,7 @@ export default ({
             axios.post("http://localhost:3000/api/posts/new", fd, { headers: {Authorization: authHeader()} })
             .then(
                 alert('Envoyé avec succès. Pour voir votre publication, cliquez sur le bouton indiqué'),
-                // window.location.reload(),
+                window.location.reload(),
                 data => this.newPost = data
                 )
             .catch(error => console.log('error', error));
@@ -95,7 +95,6 @@ export default ({
            userlog: 'logUser'
        })
    },
-
 
 })
 </script>
