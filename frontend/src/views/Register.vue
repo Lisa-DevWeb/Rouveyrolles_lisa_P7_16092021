@@ -121,8 +121,6 @@ export default {
        this.mode = 'login';
      },
      createAccount: function() {
-       alert('Form sucessfull submited')
-
         // console.log(this.username, this.role, this.email, this.password);
         const self = this;
         this.$store.dispatch('createAccount', {

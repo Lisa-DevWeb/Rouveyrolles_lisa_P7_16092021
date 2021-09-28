@@ -97,9 +97,6 @@ export default ({
             posts: [],
         }
     },
-    mounted: function () {
-
-    },
     methods: {
         getPost() {
 

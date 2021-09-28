@@ -125,10 +125,6 @@ const store = createStore({
           });
       },
 
-      // getters: {
-      //   getUser: state => state.admin,
-      // }
-
     },
     
 })
