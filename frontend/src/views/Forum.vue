@@ -97,6 +97,9 @@ export default ({
             posts: [],
         }
     },
+    mounted: function () {
+
+    },
     methods: {
         getPost() {
 
@@ -120,6 +123,7 @@ export default ({
                         })
                     })
                     .catch(error => console.log(error))
+
         },
        
     },

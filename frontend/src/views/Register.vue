@@ -63,7 +63,7 @@
                             <button @click="createAccount()" type="button" class="btn btn-block btn-lg gradient-custom-3 text-body rose button"> 
                               <span v-if="status == 'loading'">Création en cours...</span>
                               <span type="submit" class="send-button btn" value="submit" v-else>S'inscrire</span>
-                              </button>
+                            </button>
                           </div>
           
                         </form>
@@ -121,6 +121,8 @@ export default {
        this.mode = 'login';
      },
      createAccount: function() {
+       alert('Form sucessfull submited')
+
         // console.log(this.username, this.role, this.email, this.password);
         const self = this;
         this.$store.dispatch('createAccount', {

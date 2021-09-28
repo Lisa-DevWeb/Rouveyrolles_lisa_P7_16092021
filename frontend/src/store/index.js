@@ -44,6 +44,7 @@ const store = createStore({
     state: {
       status: '',
       user: user,
+      admin: {},
       usersInfos: {
         id: '',
         email: '',
@@ -54,7 +55,7 @@ const store = createStore({
         token: '',
       },
     },
-    //Pour modifier l'état, il faut acter une mutation. 
+    //Pour modifier l'état, il faut acter une mutation. Pour appeller une mutation, on utilise commit
     mutations: {
       setStatus: function (state, status) {
         state.status = status;
@@ -74,8 +75,9 @@ const store = createStore({
         }
         localStorage.removeItem('user');
       },
+     
     },
-    //Les actions actent les mutations
+    //Les actions actent les mutations. Pour les appeller on utilise dispatch
     actions: {
       login: ({commit}, usersInfos) => { //Récupération du commit pour exécuter la mutation lors de la création du compte
         commit('setStatus', 'loading');
@@ -122,6 +124,10 @@ const store = createStore({
           .catch(function () {
           });
       },
+
+      // getters: {
+      //   getUser: state => state.admin,
+      // }
 
     },
     
