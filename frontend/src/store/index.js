@@ -44,7 +44,7 @@ const store = createStore({
     state: {
       status: '',
       user: user,
-      admin: {},
+      currentUser: {},
       usersInfos: {
         id: '',
         email: '',
@@ -54,6 +54,9 @@ const store = createStore({
         latent: '',
         token: '',
       },
+    },
+    getters: {
+        isAdmin: state => state.usersInfos.isAdmin == 1
     },
     //Pour modifier l'état, il faut acter une mutation. Pour appeller une mutation, on utilise commit
     mutations: {

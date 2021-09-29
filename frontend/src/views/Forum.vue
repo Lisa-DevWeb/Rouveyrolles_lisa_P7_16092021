@@ -35,7 +35,7 @@
             <div v-for="post in posts" :key="post.id" class="card m-3 p-1 bleu contain">
 
                 <div class="col photo">
-                    <div class="cross">
+                    <div class="cross" v-if="isAdmin">
                         <button v-on:click="deletePost(post.id)" class="delete"><fa icon="trash"/></button>
                     </div>
 
@@ -122,13 +122,20 @@ export default ({
                     .catch(error => console.log(error))
 
         },
+        // isAdmin() {
+        //     this.$store.getters.isAdmin;
+        //     console.log(this.$store.getters.isAdmin)
+        // },
        
     },
     computed: {
        ...mapState({
            user: 'usersInfos',
            userlog: 'logUser'
-       })
+       }),
+       isAdmin () {
+           return this.$store.getters.isAdmin;
+       }
     },
     
 })

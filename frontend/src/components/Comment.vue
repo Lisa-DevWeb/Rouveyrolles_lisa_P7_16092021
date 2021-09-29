@@ -61,10 +61,10 @@
                       </div>
                     </div>
                   </div>
-                  <div class="reply px-4">
+                  <!-- <div class="reply px-4">
                     <small>supprimer</small><span class="dots"></span>
                     <small>Répondre</small> <span class="dots"></span>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
