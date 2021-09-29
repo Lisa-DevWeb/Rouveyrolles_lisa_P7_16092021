@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory} from 'vue-router';
+import store from '../store';
 
 const routes = [
     {
@@ -30,7 +31,7 @@ const routes = [
         path: '/api/posts/',
         component: () => import('../views/Forum.vue'),
         meta: {
-            title: 'Forum'
+            title: 'Forum',
         }
     },
     {

@@ -50,11 +50,6 @@ if (config.use_env_variable) {
 }
 
 //Création d'un modérateur
-const password = pw => bcrypt.hashSync(pw, 10);
-const privilegedUser = sequelize.query(
-	`INSERT INTO Users (id,email,username,password,role,isAdmin,latent,createdAt,updatedAt)
-	VALUES (DEFAULT,"admin@gmail.com","Admin","${password( "LesCorneilles66")}","Développeur",1,1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)`
-);
 
 // Décommenter le code ci-dessous pour créer un compte modérateur.
 // Remplacer les valeurs par celles souhaitées

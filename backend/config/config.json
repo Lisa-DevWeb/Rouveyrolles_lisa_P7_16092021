@@ -1,23 +1,23 @@
 
 {
 	"development": {
-		"username": "root",
-		"password": "JefaiSouventcereveetrangeetpenetrant584",
-		"database": "groupomania_development",
+		"username": "YOUR_USERNAME",
+		"password": "YOUR_PASSWORD",
+		"database": "YOUR_NAMEDATA",
 		"host": "127.0.0.1",
 		"dialect": "mysql"
 	},
 	"test": {
-		"username": "root",
-		"password": "JefaiSouventcereveetrangeetpenetrant584",
-		"database": "groupomania_development",
+		"username": "YOUR_USERNAME",
+		"password": "YOUR_PASSWORD",
+		"database": "YOUR_NAMEDATA",
 		"host": "127.0.0.1",
 		"dialect": "mysql"
 	},
 	"production": {
-		"username": "root",
-		"password": "JefaiSouventcereveetrangeetpenetrant584",
-		"database": "groupomania_development",
+		"username": "YOUR_USERNAME",
+		"password": "YOUR_PASSWORD",
+		"database": "YOUR_NAMEDATA",
 		"host": "127.0.0.1",
 		"dialect": "mysql"
 	}

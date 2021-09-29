@@ -30,7 +30,9 @@
                 <h3 class="d-flex justify-content-center p-3">Dernières participations</h3>
             </div>
 
-            <button v-on:click="getPost()" class="publi m-2">Voir les publications</button>
+            <div>
+                <button v-on:click="getPost()" class="publi m-2">Voir les publications</button>
+            </div>
 
             <div v-for="post in posts" :key="post.id" class="card m-3 p-1 bleu contain">
 
@@ -58,9 +60,7 @@
                         </div>
                     </div>
                     
-                    <div>
                         <commentaire v-bind:PostId="post.id"/>
-                    </div>
 
                 </div>
 
@@ -107,25 +107,21 @@ export default ({
             
         },
         deletePost(id) {
-                    
-                fetch(`http://localhost:3000/api/posts/${id}`, {
-                    method:'DELETE',
-                    headers: { Authorization: authHeader() },
+
+            fetch(`http://localhost:3000/api/posts/${id}`, {
+                method:'DELETE',
+                headers: { Authorization: authHeader() },
+                })
+                .then((result) => {
+                    alert('Votre message a bien été supprimé'),
+                    result.json().then((response) => {
+                        console.warn(response),
+                        window.location.reload();
                     })
-                    .then((result) => {
-                        alert('Votre message a bien été supprimé'),
-                        result.json().then((response) => {
-                            console.warn(response),
-                            window.location.reload();
-                        })
-                    })
-                    .catch(error => console.log(error))
+                })
+                .catch(error => console.log(error))
 
         },
-        // isAdmin() {
-        //     this.$store.getters.isAdmin;
-        //     console.log(this.$store.getters.isAdmin)
-        // },
        
     },
     computed: {
