@@ -20,16 +20,16 @@ exports.signup = async (req, res) => {
 	//Recherche de l'utilisateur dans la base de données
 	try {
 		if (!email || !username || !password || !role) {
-			throw new Error("Certains paramètres sont manquants");
+			throw new Error("Missing parameters");
 		}
 
 		if (!email_regex.test(email)) {
-			throw new Error("Format d'email incorrect");
+			throw new Error("Wrong email format");
 		}
 
 		if (!password_regex.test(password)) {
 			throw new Error(
-				"Mot de passe requis : 8 caractères minimun. -Inclure au moins 1 lettre minuscule - 1 lettre majuscule - 1 chiffre - 1 caractère spécial = !@#$%^&*"
+				"-At least 8 characters long - Include at least 1 lowercase letter - 1 capital letter - 1 number - 1 special character = !@#$%^&*"
 			);
 		}
 
@@ -39,7 +39,7 @@ exports.signup = async (req, res) => {
 			where: { email: email }
 		});
 		if (oldUser) {
-			throw new Error("Utilisteur déjà existant");
+			throw new Error("Already have an account");
 		}
 
 		//Création d'un nouvel utilisateur avec le mot de passe salé
@@ -53,7 +53,7 @@ exports.signup = async (req, res) => {
 		});
 
 		if (!newUser) {
-			throw new Error("Une erreur est survenue. Veuillez réessayer plus tard");
+			throw new Error("Sorry,something gone wrong,please try again later");
 		}
 
 		const token =
@@ -61,7 +61,7 @@ exports.signup = async (req, res) => {
 			jwt.sign({ id: newUser.id }, process.env.TOKEN_SECRET_KEY, { expiresIn: "2H" });
 
 		if (!token) {
-			throw new Error("Une erreur est survenue. S'il vous plaît, veuillez ressayer plus tard");
+			throw new Error("Sorry,something gone wrong,please try again later");
 		}
 
 		res.status(201).json({
@@ -89,14 +89,14 @@ exports.login = async (req, res) => {
 		});
 
 		if (!user) {
-			throw new Error("Désolé, compte introuvable");
+			throw new Error("Sorry,can't find your account");
 		}
 
 		//comparaison du mot de passe entré par l'user avec le hash enregistré dans la base de données
 		const isMatch = await bcrypt.compare(req.body.password, user.password);
 
 		if (!isMatch) {
-			throw new Error("Mot de passe incorrect");
+			throw new Error("Incorrect password");
 		}
 
 		const token =
@@ -107,7 +107,7 @@ exports.login = async (req, res) => {
 		});
 
 		if (!token) {
-			throw new Error("Désolé, une erreur s'est produite, veuillez réessayer plus tard");
+			throw new Error("Something gone wrong try again later");
 		}
 	} catch (error) {
 		res.status(400).json({ error: error.message });
@@ -125,7 +125,7 @@ exports.userProfil = async (req, res) => {
 		});
 
 		if (!user) {
-			throw new Error("Compte introuvable");
+			throw new Error("Sorry,can't find your account");
 		}
 		res.status(200).json({ user });
 	} catch (error) {
@@ -148,7 +148,7 @@ exports.deleteProfil = async (req, res) => {
 			where: { id: req.user.id }
 		});
 		if (!userToFind) {
-			throw new Error("Désolé, compte introuvable");
+			throw new Error("Sorry,can't find your account");
 		}
 
 		const notLatent = userToFind.update({
@@ -156,11 +156,11 @@ exports.deleteProfil = async (req, res) => {
 		});
 
 		if (!notLatent) {
-			throw new Error("Une erreur s'est produite, veuillez réessayer plus tard");
+			throw new Error("Sorry,something gone wrong , please try again later");
 		}
 
 		res.status(200).json({
-			message: "Votre compte a été supprimé avec succès"
+			message: "Your account has been successfully deleted"
 		});
 	} catch (error) {
 		res.status(400).json({ error: error.message });
@@ -176,7 +176,7 @@ exports.updateProfile = async (req, res) => {
 		});
 
 		if (!userToFind) {
-			throw new Error("Compte introuvable");
+			throw new Error("Sorry,we can't find your account");
 		}
 
 		const userToUpdate = await models.User.update(
@@ -191,15 +191,15 @@ exports.updateProfile = async (req, res) => {
 		);
 
 		if (!userToUpdate) {
-			throw new Error("Désolé, une erreur s'est produite, veuillez réessayer plus tard");
+			throw new Error("Sorry,something gone wrong,please try again later");
 		}
 		res.status(200).json({
 			user: userToUpdate.isAdmin,
-			message: "Votre compte a bien été mis à jour"
+			message: "Your account has been update"
 		});
 
 		if (!userToUpdate) {
-			throw new Error("Désolé, nous ne pouvons pas mettre à jour votre compte");
+			throw new Error("Sorry,we can't update your account");
 		}
 	} catch (error) {
 		res.status(400).json({ error: error.message });

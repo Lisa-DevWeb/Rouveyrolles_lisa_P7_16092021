@@ -15,7 +15,7 @@ exports.createPost = async (req, res) => {
 		});
 
 		if (!findUser) {
-			throw new Error("Compte introuvable");
+			throw new Error("Sorry,we can't find your account");
 		}
 
 		//Publier un fichier
@@ -31,7 +31,7 @@ exports.createPost = async (req, res) => {
 			isModerate: 0,
 		});
 		if (!newPost) {
-			throw new Error('Certains paramètres sont manquants');
+			throw new Error('Sorry, missing parameters');
 		}
 
 		res.status(200).json({ newPost });
@@ -57,7 +57,7 @@ exports.getAllPosts = async (req, res) => {
 			],
 		});
 		if (!posts) {
-			throw new Error('Il n\'y a rien à récupérer');
+			throw new Error('Sorry , nothing to fetch');
 		}
 		res.status(200).send(posts);
 	} catch (error) {
@@ -83,7 +83,7 @@ exports.getPostProfile = async (req, res) => {
 			],
 		});
 		if (!postProfile) {
-			throw new Error('Cet utilisateur n\'a rien publié');
+			throw new Error('This user has posted nothing');
 		}
 
 		res.status(200).json(postProfile);
@@ -100,7 +100,7 @@ exports.moderatePost = async (req, res) => {
 		});
 
 		if (!postToModerate) {
-			throw new Error("Votre publication n\'a pas été trouvée");
+			throw new Error("Couldn't find your post");
 		}
 
 		const moderatedPost = (await postToModerate.isModerate)
@@ -112,10 +112,10 @@ exports.moderatePost = async (req, res) => {
 			  });
 
 		if (!moderatedPost) {
-			throw new Error('Une erreur est survenue. Veuillez réessayer plus tard');
+			throw new Error('Sorry,something gone wrong,please try again later');
 		} else {
 			res.status(200).json({
-				message: 'Cette publication est à présent modérée',
+				message: 'This post is now moderate',
 				postModerate: postToModerate,
 			});
 		}
@@ -135,12 +135,12 @@ exports.deletePost = async (req, res) => {
 		if (post.attachment !== null) {
 			const filename = post.attachment.split('/images')[1];
 			fs.unlink(`images/${filename}`, (error) => {
-				error ? console.log(error) : console.log('Le fichier a été supprimé');
+				error ? console.log(error) : console.log('file has been deleted');
 			});
 		}
 
 		if (!post) {
-			throw new Error("Désolé, votre publication n'existe pas");
+			throw new Error("Sorry,your post doesn't exist");
 		}
 
 		// Post 
@@ -149,9 +149,9 @@ exports.deletePost = async (req, res) => {
 		});
 
 		if (!destroyedPost) {
-			throw new Error('Une erreur est survenue, veuillez réessayer plus tard');
+			throw new Error('Sorry,something gone wrong,please try again later');
 		} else {
-			res.status(200).json({ message: 'Votre publication a été supprimée avec succès' });
+			res.status(200).json({ message: 'Post has been deleted' });
 		}
 
 
@@ -168,7 +168,7 @@ exports.modifPost = async (req, res) => {
 		});
 
 		if (!post) {
-			throw new Error("Désolé, votre publication n'existe pas");
+			throw new Error("Sorry,your post doesn't exist");
 		}
 
 		let attachment = null;
@@ -184,9 +184,9 @@ exports.modifPost = async (req, res) => {
 		const updated = await post.save()
 
 		if (!updated) {
-			throw new Error('Une erreur est survenue. Veuillez réessayer plus tard');
+			throw new Error('Sorry,something gone wrong,please try again later');
 		} else {
-			res.status(200).json({ message: 'Votre publicaiton a été modifiée' });
+			res.status(200).json({ message: 'Post has been modified ' });
 		}
 
 	} catch (error) {

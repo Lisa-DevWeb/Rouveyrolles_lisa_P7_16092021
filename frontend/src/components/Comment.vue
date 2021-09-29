@@ -8,8 +8,8 @@
 
   <div class="d-flex flex-column container-fluid">
     <div class="row">
-      <div class="col p-3 icone"><fa icon="thumbs-up" /></div>
-      <div class="col p-3 icone"><fa icon="heart" /></div>
+      <div class="col p-3 icon"><fa icon="thumbs-up" /></div>
+      <div class="col p-3 icon"><fa icon="heart" /></div>
     </div>
 
     <div>
@@ -17,13 +17,13 @@
         <form action="">
           <div>
             <div class="card text-center">
-              <div class="card-header">
+              <div>
                 <form @submit.prevent="postCom(PostId)" action="" class="cote">
                   <input
                     v-model="newCom.comments"
                     type="text"
                     name="comments"
-                    class="container-fluid"
+                    class="container-fluid p-3"
                     placeholder="Ecrire un commentaire.."
                   />
                   <button type="submit" class="plane m-2">
@@ -34,7 +34,7 @@
                 <button
                   v-on:click="getCom(PostId)"
                   type="button"
-                  class="btn btn-lg btn-block w-100 bordeau"
+                  class="btn btn-lg btn-block w-100 burgundy"
                 >
                   <fa icon="comment-dots" />
                 </button>
@@ -46,7 +46,7 @@
                 :key="message.id"
               >
                 <div class="color">
-                  <div class="coulor container bleu">
+                  <div class="pink container white">
                     <div class="d-flex row">
                       <div class="d-flex justify-content-start flex-wrap">
                         <img
@@ -150,13 +150,14 @@ export default {
   width: 70%;
 }
 
-.icone {
+.icon {
   color: white;
 }
 
 .card {
   border-radius: 4px;
   background-color: rgb(255, 215, 215);
+  object-fit: contain;
 }
 
 .center {
@@ -169,28 +170,26 @@ export default {
   margin-right: 10px;
 }
 
-.coulor {
+.pink {
   background-color: rgb(255, 215, 215);
   border-radius: 15px;
-}
-
-.com {
-  background-color: wheat;
-  border-radius: 20px;
 }
 
 .cote {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 4px;
+  object-fit: contain;
 }
 
-.bordeau {
+.burgundy {
   background-color: rgb(209, 81, 90);
   color: white;
 }
 
-.bleu {
+.white {
   background-color: white;
 }
 

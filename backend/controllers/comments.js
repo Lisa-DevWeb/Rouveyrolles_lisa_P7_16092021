@@ -14,9 +14,9 @@ exports.createComment = async (req, res) => {
 		});
 
 		if (newCom) {
-			res.status(201).json({ message: "Votre commentaire a été envoyé", newCom });
+			res.status(201).json({ message: "Your comment has been sent", newCom });
 		} else {
-			throw new Error("Une erreur est survenue. S'il vous plaît, veuillez réeessayer plus tard");
+			throw new Error("Sorry , something gone wrong");
 		}
 	} catch (error) {
 		res.status(400).json({ error: error.message });
@@ -44,7 +44,7 @@ exports.getComments = async (req, res) => {
 		if (comments) {
 			res.status(200).send({ message: comments });
 		} else {
-			throw new Error("Il n'y a pas de commentaire");
+			throw new Error("There are no comments");
 		}
 	} catch (error) {
 		res.status(400).json({ error: error.message });

@@ -50,9 +50,8 @@ if (config.use_env_variable) {
 }
 
 //Création d'un modérateur
-
 // Décommenter le code ci-dessous pour créer un compte modérateur.
-// Remplacer les valeurs par celles souhaitées
+// Remplacez les valeurs par celles souhaitées
 //_________________________________________________________________________________________//
 
 // const password = pw => bcrypt.hashSync(pw, 10);

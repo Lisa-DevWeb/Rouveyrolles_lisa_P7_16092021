@@ -25,14 +25,14 @@
           <li class="nav-item">
             <router-link
               :to="{ name: 'Forum', path: '/api/posts/' }"
-              class="link fofo"
+              class="link forum"
               ><fa icon="home"
             /></router-link>
           </li>
           <li class="nav-item">
             <router-link
               :to="{ name: 'Profile', path: '/api/users/myprofile' }"
-              class="link useer"
+              class="link linkUser"
               ><fa icon="user"
             /></router-link>
           </li>
@@ -42,10 +42,10 @@
     <!-- Navbar -->
 
     <!-- Editer profil -->
-    <div class="color">
+    <div class="background">
       <div class="card m-2">
-        <div class="w-75 cache">
-          <div class="deco">
+        <div class="w-75 hidden">
+          <div class="flexbox">
             <button @click="logout()" class="btn m-2">Déconnexion</button>
           </div>
 
@@ -111,7 +111,6 @@
 
 <script>
 import { mapState } from "vuex";
-import axios from "axios";
 import authHeader from "../main";
 
 export default {
@@ -137,10 +136,7 @@ export default {
       let userId = localStorage.getItem("user");
       console.log(userId);
 
-      axios
-        .delete("http://localhost:3000/api/users/delete", {
-          headers: { Authorization: authHeader() },
-        })
+        fetch("http://localhost:3000/api/users/delete", { method:'DELETE', headers: {Authorization: authHeader()} })
         .then(localStorage.removeItem("user"))
         .then((location.href = "/"), alert('Votre compte a été supprimé avec succès'));
     },
@@ -154,8 +150,8 @@ export default {
   margin: auto;
 }
 
-.fofo,
-.useer {
+.forum,
+.linkUser {
   color: rgb(209, 81, 90);
   margin-left: 40px;
   padding-top: 10px;
@@ -168,7 +164,7 @@ export default {
   align-content: flex-end;
 }
 
-.deco {
+.flexbox {
   display: flex;
   justify-content: flex-end;
   align-content: flex-end;
@@ -182,8 +178,7 @@ export default {
     background-color: white;
 }
 
-h1,
-p {
+h1, p {
   margin: 0;
 }
 
@@ -191,11 +186,7 @@ h1 {
   font-size: 1.3em;
 }
 
-.rose {
-  background-color: rgb(255, 215, 215) !important;
-}
-
-.color {
+.background {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -206,7 +197,7 @@ h1 {
   height: 100px;
 }
 
-.cache {
+.hidden {
    overflow: hidden; 
 }
 
@@ -214,12 +205,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.nom {
-  display: flex;
-  justify-content: space-evenly;
-  width: 14%;
 }
 
 .delete {
