@@ -7,13 +7,10 @@
   />
 
   <div class="d-flex flex-column container-fluid">
-    <div class="row">
-      <div class="col p-3 icon"><fa icon="thumbs-up" /></div>
-      <div class="col p-3 icon"><fa icon="heart" /></div>
-    </div>
 
     <div>
       <div class="container">
+       <div><hr></div>
         <form action="">
           <div>
             <div class="card text-center">
@@ -144,6 +141,11 @@ export default {
 .card-text {
   padding-bottom: 5px;
 }
+
+hr { 
+  background-color: #ffffff; 
+  height: 10px; 
+  border: 0; }
 
 .container {
   background-color: rgb(18, 36, 65);

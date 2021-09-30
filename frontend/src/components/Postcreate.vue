@@ -71,6 +71,7 @@
 <script>
 import authHeader from "../main";
 import { mapState } from "vuex";
+import axios from 'axios'
 
 export default {
   name: "addPost",
@@ -99,7 +100,7 @@ export default {
       console.log("test recup", fd.get("title"));
       console.log("Test recup", fd.get("content"));
 
-        fetch("http://localhost:3000/api/posts/new", fd, {
+        axios.post("http://localhost:3000/api/posts/new", fd, {
         method: "POST",
         headers: { Authorization: authHeader() },
         })
