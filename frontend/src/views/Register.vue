@@ -177,7 +177,7 @@ export default {
     if (this.$store.state.user.id != -1) {
       this.$router.push("/api/users/myprofile");
       return;
-    }
+    } //Si l'id de l'utilisateur n'est pas -1, il est considéré comme étant connecté. Redicretion vers la page de profil
   },
   computed: {
     ...mapState(["status"]),
@@ -189,6 +189,7 @@ export default {
     switchToLogin: function () {
       this.mode = "login";
     },
+    //Pour faire des appel à l'API, on appelle l'action CreateAccount depuis le store
     createAccount: function () {
       const self = this;
       this.$store
@@ -200,7 +201,7 @@ export default {
         })
         .then(
           function () {
-            self.$router.push("/api/users/myprofile");
+            self.$router.push("/api/users/myprofile");//Une fois connecté, l'utilisateur est redirigé sur la page profil
           },
           function (error) {
             console.log(error);

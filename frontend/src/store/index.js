@@ -8,7 +8,8 @@ const axios = require('axios');
 const instance = axios.create({
     baseURL: 'http://localhost:3000/api/users/'
   }); 
- 
+
+//Création du user dans le localStorage avec le token en paramètre
 let user = localStorage.getItem('user');
 if (!user) {
   user = {
@@ -39,12 +40,11 @@ if (!user) {
   }
 }
 
-// Create a new store instance.
+//Création du store
 const store = createStore({
     state: {
       status: '',
       user: user,
-      currentUser: {},
       usersInfos: {
         id: '',
         email: '',
@@ -67,7 +67,7 @@ const store = createStore({
         instance.defaults.headers.common['Authorization'] = user.token;
         localStorage.setItem('user', JSON.stringify(user));
         state.user = user;
-      },
+      },//Stocker l'utilisateur dans le local storage avec en paramètre l'autorisation de connexion grâce au token
       usersInfos: function (state, usersInfos) {
         state.usersInfos = usersInfos;
       },
@@ -77,7 +77,7 @@ const store = createStore({
           token: '',
         }
         localStorage.removeItem('user');
-      },
+      },//Déconnexion et suppression des infos de l'utilisateur dans le localStorage
      
     },
     //Les actions actent les mutations. Pour les appeller on utilise dispatch
@@ -86,11 +86,12 @@ const store = createStore({
         commit('setStatus', 'loading');
         return new Promise((resolve, reject) => {
           console.log(usersInfos);
+          //Envoie des données via axios
           instance.post('/login', usersInfos)
           .then(function (response) {
             alert('Bienvenue !');
             commit('setStatus', '');
-            commit('logUser', response.data);
+            commit('logUser', response.data);//Commit afin de stocker le user
             resolve(response);
           })
           .catch(function (error) {
@@ -104,12 +105,12 @@ const store = createStore({
         commit('setStatus', 'loading');
         return new Promise((resolve, reject) => {
           commit;
-          console.log(usersInfos);
+          //Envoie des données via axios
           instance.post('/signup', usersInfos)
           .then(function (response) {
             alert('Bienvenue !');
             commit('setStatus', 'created');
-            commit('logUser', response.data);
+            commit('logUser', response.data);//Commit afin de stocker le user
             resolve(response);
           })
           .catch(function (error) {

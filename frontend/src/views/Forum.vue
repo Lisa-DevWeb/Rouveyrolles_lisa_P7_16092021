@@ -169,6 +169,9 @@ export default {
         .catch((error) => console.log(error));
     },
   },
+  mounted: function () {
+    this.$store.dispatch("getUserInfos"); //Récupération des infos de l'utilisateur
+  },
   computed: {
     ...mapState({
       user: "usersInfos",

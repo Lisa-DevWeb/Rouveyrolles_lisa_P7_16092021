@@ -119,8 +119,8 @@ export default {
     if (this.$store.state.user.id == -1) {
       this.$router.push("/api/users/login");
       return;
-    }
-    this.$store.dispatch("getUserInfos");
+    } //Si l'id de l'utilisateur est -1, il est considéré comme déconnecté. Dans ce cas, il es redirigé vers la page de connexion
+    this.$store.dispatch("getUserInfos");//Récupération des informations de l'utilisateur
   },
   computed: {
     ...mapState({
@@ -128,13 +128,14 @@ export default {
     }),
   },
   methods: {
+    //Fonction déconnexion
     logout: function () {
-      this.$store.commit("logout");
-      this.$router.push("/api/users/login");
+      this.$store.commit("logout");//Appel de la mutation logout depuis le store
+      this.$router.push("/api/users/login");//Redirection vers la page de connexion
     },
+    //Fonction pour supprimer le compte de l'utilisateur et supression dans la base de données
     deleteUser() {
       let userId = localStorage.getItem("user");
-      console.log(userId);
 
         fetch("http://localhost:3000/api/users/delete", { method:'DELETE', headers: {Authorization: authHeader()} })
         .then(localStorage.removeItem("user"))
