@@ -146,6 +146,7 @@ export default {
     };
   },
   methods: {
+    //Récupération des publications
     getPost() {
       fetch("http://localhost:3000/api/posts/getPosts", {
         method: "GET",
@@ -155,13 +156,14 @@ export default {
         .then((data) => (this.posts = data))
         .catch((error) => console.log("error", error));
     },
+    //Supprimer une publication
     deletePost(id) {
       fetch(`http://localhost:3000/api/posts/${id}`, {
         method: "DELETE",
         headers: { Authorization: authHeader() },
       })
         .then((result) => {
-          alert("Votre message a bien été supprimé"),
+          alert("Votre publication a bien été supprimée"),
             result.json().then((response) => {
               console.warn(response), window.location.reload();
             });

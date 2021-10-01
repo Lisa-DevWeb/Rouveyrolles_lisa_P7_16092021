@@ -131,7 +131,7 @@ export default {
     switchToLogin: function () {
       this.mode = "login";
     },
-     //Pour faire des appel à l'API, on appelle l'action Login depuis le store
+     //Pour faire des appel à l'API, on appelle l'action Login depuis le store. fonction pour connecter l'utilisateur
     login: function () {
       const self = this;
       this.$store

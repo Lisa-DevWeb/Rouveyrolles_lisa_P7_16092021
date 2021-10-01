@@ -90,6 +90,7 @@ export default {
     };
   },
   methods: {
+    //Récupération d'un commentaire
     getCom(id) {
       fetch(`http://localhost:3000/api/posts/${id}/comments`, {
         method: "GET",
@@ -108,6 +109,7 @@ export default {
           console.log(err);
         });
     },
+    //Envoie d'un commentaire
     postCom(id) {
       axios
         .post(`http://localhost:3000/api/posts/${id}/comment`, this.newCom, {

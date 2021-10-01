@@ -189,7 +189,7 @@ export default {
     switchToLogin: function () {
       this.mode = "login";
     },
-    //Pour faire des appel à l'API, on appelle l'action CreateAccount depuis le store
+    //Pour faire des appel à l'API, on appelle l'action CreateAccount depuis le store. Fonction pour créer un compte utilisateur
     createAccount: function () {
       const self = this;
       this.$store
