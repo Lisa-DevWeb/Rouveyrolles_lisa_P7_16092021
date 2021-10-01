@@ -89,6 +89,7 @@ export default {
     onfileSelected() {
       this.attachment = this.$refs.file.files[0];
     },
+    //Fonction permettant de publier du texte et d'envoyer des fichiers(image/gif)
     postData(e) {
       console.log(this.newPost);
       e.preventDefault();

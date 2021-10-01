@@ -136,6 +136,7 @@ export default {
     //Fonction pour supprimer le compte de l'utilisateur et supression dans la base de données
     deleteUser() {
       let userId = localStorage.getItem("user");
+      console.log(userId)
 
         fetch("http://localhost:3000/api/users/delete", { method:'DELETE', headers: {Authorization: authHeader()} })
         .then(localStorage.removeItem("user"))
