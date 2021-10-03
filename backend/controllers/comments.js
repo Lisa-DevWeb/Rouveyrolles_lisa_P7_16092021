@@ -79,3 +79,22 @@ exports.deleteComment = async (req, res) => {
 	}
 };
 
+// exports.delete = (req, res) => {
+//     Comment.delete(req.body.id)
+//         .then(response => res.status(200).json({ response, message: "Commentaire supprimé" }))
+//         .catch(error => res.status(400).json(error));
+// }
+
+// exports.delete = (id) => {
+//     return db.connect(error => {
+//         if (error) throw error;
+//         return db.promise().query(
+//             `DELETE FROM ${TABLE} WHERE id = ?`,
+//             [id]
+//         )
+//             .then(() => id)
+//             .catch(error => { throw error });
+//     })
+// }
+
+

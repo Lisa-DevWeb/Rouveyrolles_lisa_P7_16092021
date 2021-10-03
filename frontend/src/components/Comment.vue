@@ -58,10 +58,9 @@
                       </div>
                     </div>
                   </div>
-                  <!-- <div class="reply px-4">
-                    <small>supprimer</small><span class="dots"></span>
-                    <small>Répondre</small> <span class="dots"></span>
-                  </div> -->
+                  <div class="reply px-4" v-if="isAdmin">
+                    <small @click="deleteCom(PostId, message.id)">supprimer</small><span class="dots"></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -118,6 +117,22 @@ export default {
         .then((response) => console.log(response), alert("Message envoyé"), window.location.reload())
         .catch((error) => console.log(error));
     },
+    //Supression d'un commentaire
+    deleteCom(PostId, id) {
+      fetch(`http://localhost:3000/api/posts/${PostId}/comment/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: authHeader() },
+      })
+      .then((result) => {
+          alert("Votre publication a bien été supprimée"),
+            result.json().then((response) => {
+              console.warn(response), window.location.reload();
+            });
+        })
+        .catch((error) => console.log(error));
+
+    }
+
   },
 
   computed: {
@@ -125,6 +140,9 @@ export default {
       user: "usersInfos",
       userlog: "logUser",
     }),
+    isAdmin() {
+      return this.$store.getters.isAdmin;
+    },
   },
 };
 </script>

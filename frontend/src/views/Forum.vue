@@ -158,6 +158,7 @@ export default {
     },
     //Supprimer une publication
     deletePost(id) {
+      
       fetch(`http://localhost:3000/api/posts/${id}`, {
         method: "DELETE",
         headers: { Authorization: authHeader() },

@@ -133,14 +133,6 @@ exports.userProfil = async (req, res) => {
 	}
 };
 
-function catch400(callback) {
-	try {
-	  callback()
-	} catch(error) {
-	  res.status(400).json({ error: error.message });
-	}
-  } 
-
 //Suppresion du compte
 exports.deleteProfil = async (req, res) => {
 	try {
