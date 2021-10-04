@@ -7,8 +7,6 @@ const router = express.Router();
 // Routes
 router.post("/:id/comment", auth, commentCtrl.createComment); //Publier un commentaire
 router.get("/:id/comments", auth, commentCtrl.getComments); //Récupérer des commentaires
-
-// projet d'amélioration
 router.delete("/:id/comment/:id", auth, commentCtrl.deleteComment); //Supprimer un commentaire 
 
 module.exports = router;

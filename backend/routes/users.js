@@ -10,7 +10,7 @@ router.post("/login", usersCtrl.login); //Connexion de l'user
 router.delete("/delete", auth, usersCtrl.deleteProfil); //Suppression d'un compte
 router.get("/myprofile", auth, usersCtrl.userProfil); //profil user
 
-// projet d'amélioration
+//Projet d'amélioration
 router.put("/update", auth, usersCtrl.updateProfile); //Editer les informations du profil user
 
 module.exports = router;

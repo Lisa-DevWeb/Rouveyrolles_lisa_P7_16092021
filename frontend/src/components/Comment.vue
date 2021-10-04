@@ -124,7 +124,7 @@ export default {
         headers: { Authorization: authHeader() },
       })
       .then((result) => {
-          alert("Votre publication a bien été supprimée"),
+          alert("Votre commentaire a bien été supprimé"),
             result.json().then((response) => {
               console.warn(response), window.location.reload();
             });

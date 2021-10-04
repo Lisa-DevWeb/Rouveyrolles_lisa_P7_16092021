@@ -49,7 +49,7 @@ const router = createRouter({
     routes,
 })
 
-//from vue de Depart et to=vue d'arrivée
+//from vue de Depart et to vue d'arrivée
 router.afterEach((to, from) => {
     console.log(from, to);
     document.title = to.meta.title

@@ -114,7 +114,6 @@ const store = createStore({
             resolve(response);
           })
           .catch(function (error) {
-            commit('setStatus', 'error_create');
             reject(error);
           });
         })

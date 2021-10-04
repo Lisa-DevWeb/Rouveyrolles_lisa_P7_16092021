@@ -16,7 +16,8 @@
                 <div class="card-body">
                   <h1 class="text-center mb-3">S'inscrire</h1>
 
-                  <form method="post">
+                  <form method="post" @click="checkForm">
+
                     <div class="form-outline">
                       <label class="form-label" for="username"
                         >Nom et prénom</label
@@ -86,30 +87,8 @@
                       </div>
                     </div>
 
-                    <div
-                      class="form-row m-2 red"
-                      v-if="
-                        mode == 'create' &&
-                        status == 'error_create' &&
-                        email == null
-                      "
-                    >
-                      <ul>
-                        <li v-for="error in errors" v-bind:key="error.id">
-                          {{ error }}
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div
-                      class="form-row m-2 red"
-                      v-if="mode == 'create' && status == 'error_create'"
-                    >
-                      <p>
-                        Mot de passe requis : 8 caractères minimun. -Inclure au
-                        moins 1 lettre minuscule - 1 lettre majuscule - 1
-                        chiffre - 1 caractère spécial = !@#$%^&*
-                      </p>
+                     <div class="error m-2" v-for="error in formErrors">
+                        {{error}}
                     </div>
 
                     <div class="d-flex justify-content-center">
@@ -122,6 +101,7 @@
                           text-body
                           rose
                           button
+                          m-2
                         "
                       >
                         <span v-if="status == 'loading'"
@@ -161,6 +141,7 @@
 <script>
 import { mapState } from "vuex";
 
+
 export default {
   name: "Create",
   data: function () {
@@ -170,7 +151,7 @@ export default {
       username: null,
       password: null,
       role: null,
-      errors: [],
+      formErrors: [],
     };
   },
   mounted: function () {
@@ -189,6 +170,25 @@ export default {
     switchToLogin: function () {
       this.mode = "login";
     },
+    //Verifier les champs du Formulaire. S'ils sont vide, l'erreur est indiqué à l'utilisateur
+    checkForm: function (e) {
+      this.formErrors = [];
+
+      if(!this.username) {
+        this.formErrors.push("Veuillez inscrire votre nom")
+      }
+      if(!this.role) {
+        this.formErrors.push("Veuillez sélectionner un service")
+      }
+      if(!this.email) {
+        this.formErrors.push("Veuillez indiquer une adresse-mail")
+      }
+      if(!this.password) {
+        this.formErrors.push("Veuillez indiquer un mot de passe. Mot de passe requis : 8 caractères minimun. -Inclure au moins 1 lettre minuscule - 1 lettre majuscule - 1 chiffre - 1 caractère spécial = !@#$%^&*")
+      }
+
+      e.preventDefault();
+    },
     //Pour faire des appel à l'API, on appelle l'action CreateAccount depuis le store. Fonction pour créer un compte utilisateur
     createAccount: function () {
       const self = this;
@@ -203,9 +203,6 @@ export default {
           function () {
             self.$router.push("/api/users/myprofile");//Une fois connecté, l'utilisateur est redirigé sur la page profil
           },
-          function (error) {
-            console.log(error);
-          }
         );
     },
   },
@@ -223,6 +220,10 @@ export default {
   background-color: rgba(244, 67, 54, 0.14);
   color: #f44336;
   margin-bottom: 15px;
+}
+
+.error {
+  color:#f44336;
 }
 
 .btn {

@@ -126,6 +126,9 @@ export default {
     ...mapState({
       user: "usersInfos",
     }),
+     isAdmin() {
+      return this.$store.getters.isAdmin;
+    },
   },
   methods: {
     //Fonction déconnexion
