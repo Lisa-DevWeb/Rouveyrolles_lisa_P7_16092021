@@ -87,7 +87,7 @@
                       </div>
                     </div>
 
-                     <div class="error m-2" v-for="error in formErrors">
+                     <div class="error m-2" v-for="error in formErrors" v-bind:key="error.id">
                         {{error}}
                     </div>
 
@@ -215,15 +215,8 @@ export default {
   margin: auto;
 }
 
-.errors-list .error {
-  padding: 15px;
-  background-color: rgba(244, 67, 54, 0.14);
-  color: #f44336;
-  margin-bottom: 15px;
-}
-
 .error {
-  color:#f44336;
+  color:rgb(253, 45, 1);
 }
 
 .btn {
@@ -232,12 +225,6 @@ export default {
 
 .space {
   margin-top: 15px;
-}
-
-.red {
-  color: rgb(253, 45, 1);
-  margin-top: 0;
-  padding-top: 0;
 }
 
 .sentence {
